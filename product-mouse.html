@@ -6,6 +6,7 @@
   <meta name="description" content="Проводная мышь: фото, описание, характеристики и цена в учебном интернет-магазине ShopProject.">
   <title>Проводная мышь - Учебный интернет-магазин</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
   <header class="site-header">
@@ -37,6 +38,11 @@
       <img
         class="product-details__image"
         src="images/mouse.jpg"
+        srcset="images/mouse-small.jpg 480w,
+                images/mouse-640.jpg 640w,
+                images/mouse.jpg 1000w"
+        sizes="(max-width: 767px) 100vw,
+               50vw"
         alt="Чёрная проводная компьютерная мышь с красным колесом прокрутки"
         width="1000"
         height="750"
@@ -55,49 +61,51 @@
         <a class="button button--primary" href="order.html">Оформить заявку</a>
       </div>
 
-      <table class="product-table product-details__specs">
-        <caption class="product-table__caption">Характеристики товара</caption>
-        <thead>
-          <tr>
-            <th class="product-table__cell product-table__cell--head" scope="col">Параметр</th>
-            <th class="product-table__cell product-table__cell--head" scope="col">Значение</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th class="product-table__cell" scope="row">Категория</th>
-            <td class="product-table__cell">Мыши</td>
-          </tr>
-          <tr>
-            <th class="product-table__cell" scope="row">Подключение</th>
-            <td class="product-table__cell">USB</td>
-          </tr>
-          <tr>
-            <th class="product-table__cell" scope="row">Тип сенсора</th>
-            <td class="product-table__cell">Оптический</td>
-          </tr>
-          <tr>
-            <th class="product-table__cell" scope="row">Разрешение сенсора</th>
-            <td class="product-table__cell">1000 dpi</td>
-          </tr>
-          <tr>
-            <th class="product-table__cell" scope="row">Количество кнопок</th>
-            <td class="product-table__cell">3, включая колесо</td>
-          </tr>
-          <tr>
-            <th class="product-table__cell" scope="row">Цвет</th>
-            <td class="product-table__cell">Чёрный</td>
-          </tr>
-          <tr>
-            <th class="product-table__cell" scope="row">Цена</th>
-            <td class="product-table__cell">1 000 руб.</td>
-          </tr>
-          <tr>
-            <th class="product-table__cell" scope="row">Наличие</th>
-            <td class="product-table__cell">В наличии</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-wrapper product-details__specs">
+        <table class="product-table">
+          <caption class="product-table__caption">Характеристики товара</caption>
+          <thead>
+            <tr>
+              <th class="product-table__cell product-table__cell--head" scope="col">Параметр</th>
+              <th class="product-table__cell product-table__cell--head" scope="col">Значение</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th class="product-table__cell" scope="row">Категория</th>
+              <td class="product-table__cell">Мыши</td>
+            </tr>
+            <tr>
+              <th class="product-table__cell" scope="row">Подключение</th>
+              <td class="product-table__cell">USB</td>
+            </tr>
+            <tr>
+              <th class="product-table__cell" scope="row">Тип сенсора</th>
+              <td class="product-table__cell">Оптический</td>
+            </tr>
+            <tr>
+              <th class="product-table__cell" scope="row">Разрешение сенсора</th>
+              <td class="product-table__cell">1000 dpi</td>
+            </tr>
+            <tr>
+              <th class="product-table__cell" scope="row">Количество кнопок</th>
+              <td class="product-table__cell">3, включая колесо</td>
+            </tr>
+            <tr>
+              <th class="product-table__cell" scope="row">Цвет</th>
+              <td class="product-table__cell">Чёрный</td>
+            </tr>
+            <tr>
+              <th class="product-table__cell" scope="row">Цена</th>
+              <td class="product-table__cell">1 000 руб.</td>
+            </tr>
+            <tr>
+              <th class="product-table__cell" scope="row">Наличие</th>
+              <td class="product-table__cell">В наличии</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </article>
   </main>
 
