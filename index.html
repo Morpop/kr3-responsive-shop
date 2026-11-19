@@ -6,6 +6,7 @@
   <meta name="description" content="Учебный интернет-магазин ShopProject: популярные товары, преимущества проекта и форма заявки.">
   <title>ShopProject - Учебный интернет-магазин</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
   <script src="js/main.js" defer></script>
 </head>
 <body>
@@ -29,13 +30,27 @@
 
   <main>
     <section class="hero">
-      <h1 class="hero__title">Учебный интернет-магазин</h1>
-      <p class="hero__text">
-        Это главная страница учебного интернет-магазина.
-        В каталоге представлены компьютерные аксессуары,
-        а на странице контактов размещена информация для связи.
-      </p>
-      <a class="button button--primary" href="#popular">Перейти к товарам</a>
+      <div class="hero__content">
+        <h1 class="hero__title">Учебный интернет-магазин</h1>
+        <p class="hero__text">
+          Это главная страница учебного интернет-магазина.
+          В каталоге представлены компьютерные аксессуары,
+          а на странице контактов размещена информация для связи.
+        </p>
+        <a class="button button--primary" href="#popular">Перейти к товарам</a>
+      </div>
+
+      <picture class="hero__picture">
+        <source media="(min-width: 1200px)" srcset="images/hero-desktop.jpg">
+        <source media="(min-width: 768px)" srcset="images/hero-tablet.jpg">
+        <img
+          src="images/hero-mobile.jpg"
+          alt="Каталог компьютерных аксессуаров учебного интернет-магазина"
+          width="640"
+          height="480"
+          class="hero__image"
+        >
+      </picture>
     </section>
 
     <section class="section" id="advantages">
@@ -53,6 +68,21 @@
 
       <div class="products-grid">
         <article class="product-card">
+          <img
+            class="product-card__image"
+            src="images/mouse-640.jpg"
+            srcset="images/mouse-small.jpg 480w,
+                    images/mouse-640.jpg 640w,
+                    images/mouse.jpg 1000w"
+            sizes="(max-width: 639px) 100vw,
+                   (max-width: 1023px) 50vw,
+                   (max-width: 1279px) 33vw,
+                   25vw"
+            alt="Чёрная проводная мышь"
+            width="640"
+            height="480"
+            loading="lazy"
+          >
           <p class="product-card__category">Мыши</p>
           <h3 class="product-card__title"><a class="product-card__link" href="product-mouse.html">Проводная мышь</a></h3>
           <p class="product-card__description">Компактная USB-мышь для работы и учёбы за компьютером.</p>
@@ -63,6 +93,21 @@
         </article>
 
         <article class="product-card product-card--new">
+          <img
+            class="product-card__image"
+            src="images/keyboard-640.jpg"
+            srcset="images/keyboard-small.jpg 480w,
+                    images/keyboard-640.jpg 640w,
+                    images/keyboard.jpg 1000w"
+            sizes="(max-width: 639px) 100vw,
+                   (max-width: 1023px) 50vw,
+                   (max-width: 1279px) 33vw,
+                   25vw"
+            alt="Белая клавиатура с цифровым блоком"
+            width="640"
+            height="480"
+            loading="lazy"
+          >
           <span class="product-card__badge">Новинка</span>
           <p class="product-card__category">Клавиатуры</p>
           <h3 class="product-card__title"><a class="product-card__link" href="product.html">Клавиатура</a></h3>
@@ -74,6 +119,21 @@
         </article>
 
         <article class="product-card product-card--discount">
+          <img
+            class="product-card__image"
+            src="images/headset-640.jpg"
+            srcset="images/headset-small.jpg 480w,
+                    images/headset-640.jpg 640w,
+                    images/headset.jpg 1000w"
+            sizes="(max-width: 639px) 100vw,
+                   (max-width: 1023px) 50vw,
+                   (max-width: 1279px) 33vw,
+                   25vw"
+            alt="Белая гарнитура с микрофоном"
+            width="640"
+            height="480"
+            loading="lazy"
+          >
           <span class="product-card__badge">Скидка</span>
           <p class="product-card__category">Гарнитуры</p>
           <h3 class="product-card__title"><a class="product-card__link" href="product-headset.html">Наушники с микрофоном</a></h3>
@@ -85,6 +145,21 @@
         </article>
 
         <article class="product-card product-card--out-of-stock">
+          <img
+            class="product-card__image"
+            src="images/webcam-640.jpg"
+            srcset="images/webcam-small.jpg 480w,
+                    images/webcam-640.jpg 640w,
+                    images/webcam.jpg 1000w"
+            sizes="(max-width: 639px) 100vw,
+                   (max-width: 1023px) 50vw,
+                   (max-width: 1279px) 33vw,
+                   25vw"
+            alt="Чёрная веб-камера на мониторе"
+            width="640"
+            height="480"
+            loading="lazy"
+          >
           <span class="product-card__badge">Нет в наличии</span>
           <p class="product-card__category">Веб-камеры</p>
           <h3 class="product-card__title"><a class="product-card__link" href="product-webcam.html">Веб-камера</a></h3>
@@ -101,8 +176,8 @@
       <h2 class="aside-info__title">Информация для студентов</h2>
       <p class="aside-info__text">
         Товары и цены приведены для учебного примера. Форма заявки работает
-        без отправки данных на сервер. На следующих практических занятиях
-        появится адаптивная версия сайта.
+        без отправки данных на сервер. Интерфейс адаптирован под мобильные,
+        планшетные и настольные экраны по подходу Mobile First.
       </p>
     </aside>
   </main>
@@ -188,7 +263,7 @@
         >
       </div>
 
-      <div class="order-form__field">
+      <div class="order-form__field order-form__field--wide">
         <label class="order-form__label" for="order-topic">Тема заявки <span class="order-form__required" aria-hidden="true">*</span></label>
         <select class="order-form__select" id="order-topic" aria-describedby="order-topic-error" data-error="Выберите тему заявки." name="topic" required>
           <option value="">Выберите тему</option>
@@ -199,7 +274,7 @@
         <span class="order-form__error" id="order-topic-error"></span>
       </div>
 
-      <div class="order-form__field">
+      <div class="order-form__field order-form__field--wide">
         <label class="order-form__label" for="order-comment">Комментарий</label>
         <textarea
           class="order-form__textarea"

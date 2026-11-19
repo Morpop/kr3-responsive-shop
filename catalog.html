@@ -6,6 +6,7 @@
   <meta name="description" content="Каталог компьютерных аксессуаров учебного интернет-магазина ShopProject.">
   <title>Каталог товаров - Учебный интернет-магазин</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
   <header class="site-header">
@@ -36,7 +37,8 @@
       <h1>Каталог товаров</h1>
       <p>
         На этой странице представлен учебный каталог товаров.
-        Слева размещена учебная форма фильтров, справа - список товаров.
+        На мобильных экранах блок фильтров располагается над товарами,
+        а на настольных экранах — слева от списка товаров.
       </p>
     </section>
 
@@ -84,7 +86,21 @@
         <h2 class="catalog-layout__title">Список товаров</h2>
         <div class="products-grid">
           <article class="product-card">
-            <img class="product-card__image" src="images/mouse-small.jpg" alt="Чёрная проводная мышь" width="480" height="360" loading="lazy">
+            <img
+              class="product-card__image"
+              src="images/mouse-640.jpg"
+              srcset="images/mouse-small.jpg 480w,
+                      images/mouse-640.jpg 640w,
+                      images/mouse.jpg 1000w"
+              sizes="(max-width: 639px) 100vw,
+                     (max-width: 1023px) 50vw,
+                     (max-width: 1279px) 38vw,
+                     25vw"
+              alt="Чёрная проводная мышь"
+              width="640"
+              height="480"
+              loading="lazy"
+            >
             <p class="product-card__category">Мыши</p>
             <h3 class="product-card__title">Проводная мышь</h3>
             <p class="product-card__description">Компактная USB-мышь для работы и учёбы за компьютером.</p>
@@ -93,7 +109,21 @@
           </article>
 
           <article class="product-card product-card--new">
-            <img class="product-card__image" src="images/keyboard-small.jpg" alt="Белая клавиатура с цифровым блоком" width="480" height="360" loading="lazy">
+            <img
+              class="product-card__image"
+              src="images/keyboard-640.jpg"
+              srcset="images/keyboard-small.jpg 480w,
+                      images/keyboard-640.jpg 640w,
+                      images/keyboard.jpg 1000w"
+              sizes="(max-width: 639px) 100vw,
+                     (max-width: 1023px) 50vw,
+                     (max-width: 1279px) 38vw,
+                     25vw"
+              alt="Белая клавиатура с цифровым блоком"
+              width="640"
+              height="480"
+              loading="lazy"
+            >
             <span class="product-card__badge">Новинка</span>
             <p class="product-card__category">Клавиатуры</p>
             <h3 class="product-card__title">Клавиатура</h3>
@@ -103,7 +133,21 @@
           </article>
 
           <article class="product-card product-card--discount">
-            <img class="product-card__image" src="images/headset-small.jpg" alt="Белая гарнитура с микрофоном" width="480" height="360" loading="lazy">
+            <img
+              class="product-card__image"
+              src="images/headset-640.jpg"
+              srcset="images/headset-small.jpg 480w,
+                      images/headset-640.jpg 640w,
+                      images/headset.jpg 1000w"
+              sizes="(max-width: 639px) 100vw,
+                     (max-width: 1023px) 50vw,
+                     (max-width: 1279px) 38vw,
+                     25vw"
+              alt="Белая гарнитура с микрофоном"
+              width="640"
+              height="480"
+              loading="lazy"
+            >
             <span class="product-card__badge">Скидка</span>
             <p class="product-card__category">Гарнитуры</p>
             <h3 class="product-card__title">Наушники с микрофоном</h3>
@@ -113,7 +157,21 @@
           </article>
 
           <article class="product-card product-card--out-of-stock">
-            <img class="product-card__image" src="images/webcam-small.jpg" alt="Чёрная веб-камера на мониторе" width="480" height="360" loading="lazy">
+            <img
+              class="product-card__image"
+              src="images/webcam-640.jpg"
+              srcset="images/webcam-small.jpg 480w,
+                      images/webcam-640.jpg 640w,
+                      images/webcam.jpg 1000w"
+              sizes="(max-width: 639px) 100vw,
+                     (max-width: 1023px) 50vw,
+                     (max-width: 1279px) 38vw,
+                     25vw"
+              alt="Чёрная веб-камера на мониторе"
+              width="640"
+              height="480"
+              loading="lazy"
+            >
             <span class="product-card__badge">Нет в наличии</span>
             <p class="product-card__category">Веб-камеры</p>
             <h3 class="product-card__title">Веб-камера</h3>
