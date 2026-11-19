@@ -3,194 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Каталог компьютерных аксессуаров учебного интернет-магазина ShopProject.">
-  <title>Каталог товаров - Учебный интернет-магазин</title>
+  <meta name="description" content="Каталог компьютерной периферии, аудиоустройств, мониторов и ультрабуков VoltMirea с живым поиском, фильтрами и избранным.">
+  <title>Каталог техники — VoltMirea</title>
+  <script>document.documentElement.dataset.theme=localStorage.getItem('voltmirea-theme')||'light';</script>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/responsive.css">
 </head>
-<body>
-  <header class="site-header">
-    <div class="site-header__inner">
-      <a class="site-header__logo" href="index.html">ShopProject</a>
+<body data-page="catalog">
+  <a class="skip-link" href="#main-content">Перейти к основному содержимому</a>
 
-      <nav class="site-nav" aria-label="Основная навигация">
-        <ul class="site-nav__list">
-          <li class="site-nav__item"><a class="site-nav__link" href="index.html">Главная</a></li>
-          <li class="site-nav__item"><a class="site-nav__link site-nav__link--active" href="catalog.html" aria-current="page">Каталог</a></li>
-          <li class="site-nav__item"><a class="site-nav__link" href="order.html">Заявка</a></li>
-          <li class="site-nav__item"><a class="site-nav__link" href="contacts.html">Контакты</a></li>
-          <li class="site-nav__item"><a class="site-nav__link" href="index.html#advantages">Преимущества</a></li>
-          <li class="site-nav__item"><a class="site-nav__link" href="index.html#popular">Популярные товары</a></li>
-          <li class="site-nav__item"><a class="site-nav__link" href="index.html#contacts">Обратная связь</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+  <header id="react-header" class="site-header-wrap"></header>
 
-  <main>
-    <nav class="breadcrumbs" aria-label="Хлебные крошки">
-      <a class="breadcrumbs__link" href="index.html">Главная</a>
-      <span class="breadcrumbs__current" aria-current="page">Каталог</span>
-    </nav>
-
-    <section class="section">
-      <h1>Каталог товаров</h1>
-      <p>
-        На этой странице представлен учебный каталог товаров.
-        На мобильных экранах блок фильтров располагается над товарами,
-        а на настольных экранах — слева от списка товаров.
-      </p>
+  <main id="main-content" tabindex="-1">
+    <section class="container section-block section-block--tight" aria-labelledby="catalog-page-title">
+      <div class="section-header-split">
+        <div>
+          <span class="eyebrow-tag">Проверенные устройства с гарантией</span>
+          <h1 class="page-h1" id="catalog-page-title">Каталог техники VoltMirea</h1>
+          <p class="lead-paragraph">
+            Используйте живой поиск, фильтр по бюджету и вкладку «Избранное», чтобы быстро подобрать периферию для учёбы, работы и отдыха.
+          </p>
+        </div>
+        <a class="btn-volt btn-volt--primary" href="order.html">Калькулятор комплекта</a>
+      </div>
     </section>
 
-    <section class="catalog-layout" aria-label="Каталог с фильтрами">
-      <aside class="catalog-filters catalog-layout__filters">
-        <h2 class="catalog-filters__title">Фильтры</h2>
-        <form class="filters-form" action="#" method="get">
-          <fieldset class="filters-form__group">
-            <legend class="filters-form__legend">Категория</legend>
-            <label class="filters-form__label">
-              <input type="checkbox" name="category" value="all">
-              Все товары
-            </label>
-            <label class="filters-form__label">
-              <input type="checkbox" name="category" value="mice">
-              Мыши
-            </label>
-            <label class="filters-form__label">
-              <input type="checkbox" name="category" value="keyboards">
-              Клавиатуры
-            </label>
-            <label class="filters-form__label">
-              <input type="checkbox" name="category" value="headsets">
-              Гарнитуры
-            </label>
-            <label class="filters-form__label">
-              <input type="checkbox" name="category" value="webcams">
-              Веб-камеры
-            </label>
-          </fieldset>
-
-          <fieldset class="filters-form__group">
-            <legend class="filters-form__legend">Цена</legend>
-            <label class="filters-form__label" for="price-from">От</label>
-            <input class="filters-form__input" id="price-from" name="price-from" type="number" min="0" placeholder="0">
-            <label class="filters-form__label" for="price-to">До</label>
-            <input class="filters-form__input" id="price-to" name="price-to" type="number" min="0" placeholder="5000">
-          </fieldset>
-
-          <button class="button button--primary" type="submit">Применить</button>
-        </form>
-      </aside>
-
-      <section class="catalog-layout__products">
-        <h2 class="catalog-layout__title">Список товаров</h2>
-        <div class="products-grid">
-          <article class="product-card">
-            <img
-              class="product-card__image"
-              src="images/mouse-640.jpg"
-              srcset="images/mouse-small.jpg 480w,
-                      images/mouse-640.jpg 640w,
-                      images/mouse.jpg 1000w"
-              sizes="(max-width: 639px) 100vw,
-                     (max-width: 1023px) 50vw,
-                     (max-width: 1279px) 38vw,
-                     25vw"
-              alt="Чёрная проводная мышь"
-              width="640"
-              height="480"
-              loading="lazy"
-            >
-            <p class="product-card__category">Мыши</p>
-            <h3 class="product-card__title">Проводная мышь</h3>
-            <p class="product-card__description">Компактная USB-мышь для работы и учёбы за компьютером.</p>
-            <p class="product-card__price">Цена: 1 000 руб.</p>
-            <a class="button button--primary product-card__button" href="product-mouse.html">Подробнее</a>
-          </article>
-
-          <article class="product-card product-card--new">
-            <img
-              class="product-card__image"
-              src="images/keyboard-640.jpg"
-              srcset="images/keyboard-small.jpg 480w,
-                      images/keyboard-640.jpg 640w,
-                      images/keyboard.jpg 1000w"
-              sizes="(max-width: 639px) 100vw,
-                     (max-width: 1023px) 50vw,
-                     (max-width: 1279px) 38vw,
-                     25vw"
-              alt="Белая клавиатура с цифровым блоком"
-              width="640"
-              height="480"
-              loading="lazy"
-            >
-            <span class="product-card__badge">Новинка</span>
-            <p class="product-card__category">Клавиатуры</p>
-            <h3 class="product-card__title">Клавиатура</h3>
-            <p class="product-card__description">Полноразмерная USB-клавиатура с цифровым блоком для набора текста.</p>
-            <p class="product-card__price">Цена: 1 500 руб.</p>
-            <a class="button button--primary product-card__button" href="product.html">Подробнее</a>
-          </article>
-
-          <article class="product-card product-card--discount">
-            <img
-              class="product-card__image"
-              src="images/headset-640.jpg"
-              srcset="images/headset-small.jpg 480w,
-                      images/headset-640.jpg 640w,
-                      images/headset.jpg 1000w"
-              sizes="(max-width: 639px) 100vw,
-                     (max-width: 1023px) 50vw,
-                     (max-width: 1279px) 38vw,
-                     25vw"
-              alt="Белая гарнитура с микрофоном"
-              width="640"
-              height="480"
-              loading="lazy"
-            >
-            <span class="product-card__badge">Скидка</span>
-            <p class="product-card__category">Гарнитуры</p>
-            <h3 class="product-card__title">Наушники с микрофоном</h3>
-            <p class="product-card__description">Проводная гарнитура для онлайн-занятий, общения и прослушивания музыки.</p>
-            <p class="product-card__price">Цена: 1 600 руб. <s class="product-card__old-price">2 000 руб.</s></p>
-            <a class="button button--primary product-card__button" href="product-headset.html">Подробнее</a>
-          </article>
-
-          <article class="product-card product-card--out-of-stock">
-            <img
-              class="product-card__image"
-              src="images/webcam-640.jpg"
-              srcset="images/webcam-small.jpg 480w,
-                      images/webcam-640.jpg 640w,
-                      images/webcam.jpg 1000w"
-              sizes="(max-width: 639px) 100vw,
-                     (max-width: 1023px) 50vw,
-                     (max-width: 1279px) 38vw,
-                     25vw"
-              alt="Чёрная веб-камера на мониторе"
-              width="640"
-              height="480"
-              loading="lazy"
-            >
-            <span class="product-card__badge">Нет в наличии</span>
-            <p class="product-card__category">Веб-камеры</p>
-            <h3 class="product-card__title">Веб-камера</h3>
-            <p class="product-card__description">Full HD веб-камера для видеозвонков и онлайн-занятий.</p>
-            <p class="product-card__price">Цена: 2 500 руб.</p>
-            <a class="button button--primary product-card__button" href="product-webcam.html">Подробнее</a>
-          </article>
-        </div>
-      </section>
+    <section class="container section-block section-block--last" aria-label="Фильтрация и список устройств">
+      <div id="react-catalog-app"></div>
     </section>
   </main>
 
-  <footer class="site-footer" id="contacts">
-    <div class="site-footer__inner">
-      <p>&copy; 2026 Учебный проект</p>
-      <p>Дисциплина: Фронтенд и бэкенд разработка</p>
-      <p>Выполнил: Явдощук Дмитрий</p>
-      <p>Группа: ЭФБО-11-25</p>
-    </div>
-  </footer>
+  <footer id="react-footer" class="site-footer"></footer>
+  <div id="react-floating-widgets"></div>
+
+  <script src="js/vendor/react.production.min.js"></script>
+  <script src="js/vendor/react-dom.production.min.js"></script>
+  <script src="js/logic.js"></script>
+  <script src="js/components-shell.js"></script>
+  <script src="js/components-pages.js"></script>
 </body>
 </html>
