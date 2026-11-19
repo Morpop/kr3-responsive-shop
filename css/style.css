@@ -1,768 +1,2056 @@
-/* ===============================
-   1. Переменные проекта
-   =============================== */
-
 :root {
-  /* Основные цвета проекта */
-  --color-bg: #ffffff;
-  --color-text: #222222;
-  --color-muted: #666666;
-  --color-primary: #0057b8;
-  --color-primary-dark: #003f86;
-  --color-border: #dddddd;
-  --color-surface: #f7f7f7;
-  --color-surface-accent: #eef5ff;
-  --color-danger: #b00020;
-  --color-success: #168a2f;
-  --color-success-bg: #eefaf0;
-  --color-white: #ffffff;
-
-  /* Отступы */
-  --space-xs: 4px;
-  --space-sm: 8px;
-  --space-md: 16px;
-  --space-lg: 24px;
-  --space-xl: 32px;
-
-  /* Скругления */
-  --radius-sm: 6px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-
-  /* Размеры */
-  --container-width: 1100px;
+  --volt-deep: #161332;
+  --volt-indigo: #231e4d;
+  --volt-primary: #5b4bff;
+  --volt-primary-dark: #4434e2;
+  --volt-coral: #ff6242;
+  --volt-amber: #f59e0b;
+  --volt-mint: #0d9668;
+  --volt-paper: #f6f5fc;
+  --volt-surface: #ffffff;
+  --volt-surface-soft: #edeafb;
+  --volt-ink: #171433;
+  --volt-muted: #4b476b;
+  --volt-line: #dbd6f2;
+  --volt-shadow: 0 18px 44px rgba(22, 19, 50, 0.09);
+  --volt-radius-sm: 10px;
+  --volt-radius-md: 16px;
+  --volt-radius-lg: 24px;
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* ===============================
-   2. Базовые стили
-   =============================== */
+html[data-theme="dark"] {
+  --volt-paper: #0e0c1d;
+  --volt-surface: #17142e;
+  --volt-surface-soft: #221d42;
+  --volt-ink: #f4f3ff;
+  --volt-muted: #b8b3dc;
+  --volt-line: #312a5c;
+  --volt-shadow: 0 20px 48px rgba(0, 0, 0, 0.42);
+}
 
-/* Ширина элемента включает содержимое, внутренние отступы и рамку. */
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
-/*
-  Место под полосу прокрутки зарезервировано всегда, поэтому страница
-  не сдвигается, когда модальное окно отключает прокрутку.
-*/
 html {
-  scrollbar-gutter: stable;
   scroll-behavior: smooth;
+  scroll-padding-top: 96px;
+  -webkit-text-size-adjust: 100%;
 }
 
-:target {
-  outline: 2px dashed var(--color-primary);
-  outline-offset: 4px;
-}
-
-/* Минимальный сброс отступов и наследуемые стили текста. */
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  line-height: 1.5;
-  color: var(--color-text);
-  background-color: var(--color-bg);
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  font-family: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--volt-ink);
+  background-color: var(--volt-paper);
+  transition: background-color 200ms var(--ease-smooth), color 200ms var(--ease-smooth);
 }
 
-/* Отступы отделяют содержимое от краёв окна браузера. */
 main {
-  padding: var(--space-lg);
+  flex: 1 0 auto;
 }
 
-/* ===============================
-   3. Общие элементы интерфейса
-   =============================== */
+img,
+picture,
+svg,
+iframe {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
 
 a {
-  color: var(--color-primary);
+  color: var(--volt-primary);
+  text-decoration: none;
 }
 
-a:hover {
-  color: var(--color-primary-dark);
+html[data-theme="dark"] a {
+  color: #9e93ff;
 }
 
-/* Видимый фокус помогает перемещаться по странице клавишей Tab. */
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible,
-summary:focus-visible {
-  outline: 2px solid var(--color-primary);
+[tabindex]:focus-visible {
+  outline: 3px solid var(--volt-coral);
   outline-offset: 3px;
 }
 
-/*
-  Кнопка - самостоятельный БЭМ-блок для ссылок-кнопок и настоящих кнопок.
-  Базовый класс задаёт форму, вариант оформления - модификатор.
-*/
-.button {
-  display: inline-block;
-  padding: var(--space-sm) var(--space-md);
-  text-decoration: none;
-  border: none;
-  border-radius: var(--radius-sm);
-  font: inherit;
-  cursor: pointer;
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
 }
 
-/* Модификатор: основная кнопка. */
-.button--primary {
-  color: var(--color-white);
-  background-color: var(--color-primary);
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 3000;
+  padding: 12px 18px;
+  border-radius: var(--volt-radius-sm);
+  background: var(--volt-coral);
+  color: #ffffff !important;
+  font-weight: 800;
+  transform: translateY(-220%);
+  transition: transform 180ms var(--ease-smooth);
 }
 
-/*
-  color повторяется специально: у ссылки-кнопки правило a:hover
-  сильнее, чем .button--primary, и без этого текст сливается с фоном.
-*/
-.button--primary:hover {
-  color: var(--color-white);
-  background-color: var(--color-primary-dark);
+.skip-link:focus,
+.skip-link:focus-visible {
+  transform: translateY(0);
 }
 
-/* Модификатор: второстепенная кнопка с рамкой. */
-.button--secondary {
-  color: var(--color-primary);
-  background-color: transparent;
-  border: 1px solid var(--color-primary);
+.container {
+  width: min(100% - 32px, 1280px);
+  margin-inline: auto;
 }
 
-.button--secondary:hover {
-  color: var(--color-white);
-  background-color: var(--color-primary);
+.section-block {
+  padding-top: clamp(32px, 5vw, 56px);
 }
 
-/* Момент нажатия: кнопка немного уменьшается. */
-.button:active {
-  transform: scale(0.96);
+.section-block--tight {
+  padding-top: clamp(24px, 3.5vw, 40px);
 }
 
-/* Отключённая кнопка приглушена и не реагирует на наведение и нажатие. */
-.button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-  transform: none;
+.section-block--last {
+  padding-bottom: clamp(56px, 7vw, 88px);
 }
 
-.button--primary:disabled {
-  background-color: var(--color-primary);
+h1,
+h2,
+h3,
+h4 {
+  margin: 0 0 12px;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
 }
 
-/* ===============================
-   4. Компоненты страницы
-   =============================== */
-
-/*
-  Классы названы по БЭМ: блок (.product-card),
-  элемент блока (.product-card__title), модификатор (.product-card--out-of-stock).
-  Стили задаются через классы, а не через вложенные теги.
-  id остаются только для якорных ссылок и JavaScript.
-*/
-
-/* Шапка и подвал: фон на всю ширину окна и отступы от его краёв. */
-.site-header,
-.site-footer {
-  padding: var(--space-lg);
-  background-color: var(--color-surface);
+p {
+  margin: 0 0 14px;
 }
 
-/* Общая ширина и центрирование содержимого шапки и подвала. */
-.site-header__inner,
-.site-footer__inner {
-  max-width: var(--container-width);
-  margin: 0 auto;
+.page-h1,
+.hero-title {
+  font-size: clamp(1.9rem, 5.2vw, 3.45rem);
 }
 
-/* Flexbox размещает логотип и меню в строку с переносом при нехватке места. */
-.site-header__inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: var(--space-md);
+.section-h2 {
+  font-size: clamp(1.5rem, 3.5vw, 2.35rem);
 }
 
-/*
-  На широком экране шапка с меню закреплена у верхнего края окна.
-  sticky оставляет шапку в потоке, поэтому контент под ней не прячется.
-  Уже 1200px меню переносится на несколько строк и заняло бы до трети
-  экрана, поэтому там шапка прокручивается вместе со страницей.
-  z-index поднимает шапку над карточками и кнопкой «Наверх».
-  У шапки нет id="top": ссылка #top без такого элемента по стандарту HTML
-  прокручивает в начало страницы, а к закреплённой шапке браузер не прокрутил бы.
-*/
-@media (min-width: 1200px) {
-  .site-header {
-    position: sticky;
-    top: 0;
-    z-index: 20;
-  }
-
-  /* Якорная ссылка останавливает раздел под шапкой высотой 88px, а не за ней. */
-  html {
-    scroll-padding-top: 104px;
-  }
+.section-h3 {
+  font-size: 1.25rem;
 }
 
-.site-header__logo {
-  font-size: 20px;
-  font-weight: bold;
-  text-decoration: none;
-  color: var(--color-text);
+.lead-paragraph,
+.hero-lead {
+  max-width: 60ch;
+  color: var(--volt-muted);
+  font-size: clamp(1rem, 1.4vw, 1.16rem);
 }
 
-.site-nav__list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: var(--space-md);
-  padding: 0;
+.muted-note {
   margin: 0;
-  list-style: none;
+  color: var(--volt-muted);
 }
 
-.site-nav__link {
+.eyebrow-tag {
   display: inline-block;
-  padding: var(--space-sm) var(--space-md);
-  color: var(--color-primary);
-  text-decoration: none;
-  border-radius: var(--radius-sm);
+  margin-bottom: 10px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  background: var(--volt-surface-soft);
+  color: var(--volt-primary);
 }
 
-.site-nav__link:hover {
-  color: var(--color-white);
-  background-color: var(--color-primary);
+html[data-theme="dark"] .eyebrow-tag {
+  color: #b8afff;
 }
 
-/* Модификатор: пункт меню текущей страницы. */
-.site-nav__link--active {
-  color: var(--color-white);
-  background-color: var(--color-primary);
+.ui-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
 }
 
-.breadcrumbs {
-  max-width: var(--container-width);
-  margin: 0 auto var(--space-md);
-  font-size: 14px;
-  color: var(--color-muted);
-}
-
-.breadcrumbs__link {
-  color: var(--color-primary);
-}
-
-.breadcrumbs__current::before {
-  content: " / ";
-  color: var(--color-muted);
-}
-
-/*
-  Разделитель перед второй ссылкой: Главная / Каталог / Товар.
-  inline-block не даёт подчёркиванию ссылки перейти на разделитель.
-*/
-.breadcrumbs__link + .breadcrumbs__link::before {
-  content: "/ ";
-  display: inline-block;
-  white-space: pre;
-  color: var(--color-muted);
-}
-
-/* Первый экран выделяется светлым фоном и внутренними отступами. */
-.hero {
-  max-width: var(--container-width);
-  margin: 0 auto var(--space-xl);
-  padding: var(--space-xl) var(--space-lg);
-  background-color: var(--color-surface-accent);
-  border-radius: var(--radius-lg);
-}
-
-.hero__title {
-  margin-top: 0;
-  font-size: 32px;
-  line-height: 1.2;
-}
-
-.section {
-  max-width: var(--container-width);
-  margin: 0 auto var(--space-xl);
-}
-
-.section__title,
-.catalog-filters__title,
-.catalog-layout__title,
-.aside-info__title {
-  margin-top: 0;
-}
-
-.advantages-list {
-  padding-left: var(--space-lg);
-}
-
-.advantages-list__item {
-  margin-bottom: var(--space-sm);
-}
-
-/* CSS Grid распределяет карточки по колонкам с учётом ширины контейнера. */
-.products-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
-  gap: var(--space-lg);
-}
-
-/* Именованные области размещают фильтры слева, товары справа. */
-.catalog-layout {
-  max-width: var(--container-width);
-  margin: 0 auto var(--space-xl);
-  display: grid;
-  grid-template-columns: 260px 1fr;
-  grid-template-areas: "filters products";
-  gap: var(--space-lg);
-}
-
-/*
-  Элементы макета занимают свои области сетки. Фильтры - отдельный блок
-  catalog-filters, а место в сетке ему даёт элемент catalog-layout__filters.
-*/
-.catalog-layout__filters {
-  grid-area: filters;
-}
-
-.catalog-layout__products {
-  grid-area: products;
-}
-
-.catalog-filters {
-  padding: var(--space-md);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  background-color: var(--color-surface);
-}
-
-.filters-form {
-  display: grid;
-  gap: var(--space-md);
-}
-
-.filters-form__group {
-  margin: 0;
-  padding: var(--space-md);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-}
-
-.filters-form__legend {
-  font-weight: 700;
-}
-
-.filters-form__label {
-  display: block;
-  margin-bottom: var(--space-sm);
-}
-
-.filters-form__input {
-  width: 100%;
-  padding: 8px 10px;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  font: inherit;
-}
-
-/*
-  position: relative оставляет карточку на месте, но делает её
-  точкой отсчёта для бейджа с position: absolute.
-*/
-.product-card {
+/* Header & Navbar */
+.site-header-wrap {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-sm);
-  padding: var(--space-md);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  background-color: var(--color-bg);
+  z-index: 1000;
 }
 
-.product-card:hover {
-  border-color: var(--color-primary);
+.topbar {
+  background: linear-gradient(90deg, #ffb84d 0%, #ff7d54 100%);
+  color: #161332;
+  padding-block: 10px;
 }
 
-/*
-  Бейдж убран из обычного потока и посажен на верхнюю рамку карточки справа.
-  top и right отсчитываются от карточки, потому что у неё position: relative.
-  Отрицательный top выводит бейдж за край карточки, поэтому он не
-  наезжает на заголовок даже на узком экране.
-*/
-.product-card__badge {
-  position: absolute;
-  top: calc(var(--space-sm) * -1);
-  right: var(--space-md);
-  padding: var(--space-xs) var(--space-sm);
-  color: var(--color-white);
-  background-color: var(--color-muted);
-  border-radius: var(--radius-sm);
-  font-size: 14px;
-  font-weight: bold;
-  line-height: 1;
-}
-
-/* Модификатор блока: карточка товара без наличия выделена серым фоном. */
-.product-card--out-of-stock {
-  background-color: var(--color-surface);
-}
-
-/*
-  Модификаторы блока меняют его элементы: один класс на карточке
-  задаёт и цвет бейджа, и вид цены.
-*/
-.product-card--new .product-card__badge {
-  background-color: var(--color-primary);
-}
-
-.product-card--discount .product-card__badge {
-  background-color: var(--color-danger);
-}
-
-.product-card--discount .product-card__price {
-  color: var(--color-danger);
-}
-
-/* Старая цена товара со скидкой: <s> зачёркивает её по смыслу, а не только визуально. */
-.product-card__old-price {
-  margin-left: var(--space-xs);
-  font-weight: normal;
-  color: var(--color-muted);
-}
-
-.product-card__title,
-.product-card__description {
-  margin: 0;
-}
-
-.product-card__price {
-  margin-top: auto;
-  margin-bottom: 0;
-  font-weight: bold;
-}
-
-.product-card__button {
-  align-self: flex-start;
-}
-
-/*
-  Фото товара в карточке каталога. В HTML стоит уменьшенная копия 480×360,
-  а aspect-ratio и object-fit держат у всех карточек одинаковую пропорцию 4:3.
-*/
-.product-card__image {
-  display: block;
-  width: 100%;
-  height: auto;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  border-radius: var(--radius-sm);
-}
-
-.product-card__category {
-  margin: 0;
-  font-size: 14px;
-  color: var(--color-muted);
-}
-
-/* Название товара ведёт на страницу товара. */
-.product-card__link {
-  color: inherit;
-  text-decoration: none;
-}
-
-.product-card__link:hover {
-  color: var(--color-primary);
-  text-decoration: underline;
-}
-
-/*
-  Страница товара: фото и описание в две колонки, таблица под ними.
-  auto-fit сам ставит описание под фото, когда двум колонкам не хватает места.
-*/
-.product-details {
-  max-width: var(--container-width);
-  margin: 0 auto var(--space-xl);
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
-  gap: var(--space-xl);
-  align-items: start;
-}
-
-/* width и height в HTML резервируют место под фото до его загрузки. */
-.product-details__image {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: var(--radius-md);
-}
-
-.product-details__info {
+.topbar__inner {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--space-md);
+  gap: 6px;
 }
 
-.product-details__category,
-.product-details__title,
-.product-details__description,
-.product-details__price,
-.product-details__stock {
+.brand-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: #161332 !important;
+}
+
+.brand-link__logo {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.brand-link__text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.brand-link__name {
+  font-size: 1.38rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.brand-link__sub {
+  font-size: 0.8rem;
+  font-weight: 700;
+  opacity: 0.85;
+}
+
+.topbar__info {
   margin: 0;
+  font-size: 0.86rem;
+  font-weight: 700;
 }
 
-.product-details__category {
-  font-size: 14px;
-  color: var(--color-muted);
+.main-navbar {
+  background: var(--volt-deep);
+  color: #ffffff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 28px rgba(15, 12, 36, 0.2);
 }
 
-.product-details__title {
-  font-size: 32px;
+.main-navbar__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-block: 10px;
+}
+
+.burger-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+}
+
+.burger-btn__lines {
+  position: relative;
+  width: 20px;
+  height: 2px;
+  background: currentColor;
+  border-radius: 2px;
+  transition: background-color 160ms ease;
+}
+
+.burger-btn__lines::before,
+.burger-btn__lines::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 20px;
+  height: 2px;
+  background: #ffffff;
+  border-radius: 2px;
+  transition: transform 180ms ease;
+}
+
+.burger-btn__lines::before {
+  top: -6px;
+}
+
+.burger-btn__lines::after {
+  top: 6px;
+}
+
+.burger-btn__lines.is-open {
+  background: transparent;
+}
+
+.burger-btn__lines.is-open::before {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.burger-btn__lines.is-open::after {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+.nav-links {
+  display: none;
+  width: 100%;
+  order: 3;
+  flex-direction: column;
+  gap: 6px;
+  list-style: none;
+  margin: 4px 0 0;
+  padding: 8px 0 4px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.nav-links.is-open {
+  display: flex;
+}
+
+.nav-links__link {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 10px 16px;
+  border-radius: 12px;
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-weight: 700;
+  transition: background-color 160ms ease, color 160ms ease;
+}
+
+.nav-links__link:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff !important;
+}
+
+.nav-links__link.is-active {
+  background: var(--volt-primary);
+  color: #ffffff !important;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-action-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  transition: transform 150ms ease, border-color 150ms ease, background-color 150ms ease;
+}
+
+.nav-action-btn:hover {
+  border-color: #ff9c7e;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.nav-action-btn--fav svg {
+  color: #ff7e66;
+}
+
+.nav-action-btn__badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: var(--volt-coral);
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cabinet-trigger-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 6px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  background: linear-gradient(135deg, #5b4bff 0%, #7a5cff 100%);
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.cabinet-trigger-btn__label {
+  display: none;
+}
+
+.cabinet-trigger-btn__bonus {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.2);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+/* Buttons & Badges */
+.btn-volt {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 20px;
+  border-radius: 12px;
+  border: 2px solid transparent;
+  font-weight: 800;
+  text-align: center;
+  transition: transform 150ms ease, background-color 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.btn-volt:active {
+  transform: scale(0.98);
+}
+
+.btn-volt--lg {
+  min-height: 50px;
+  padding: 12px 24px;
+  font-size: 1.02rem;
+}
+
+.btn-volt--sm {
+  min-height: 40px;
+  padding: 8px 14px;
+  font-size: 0.9rem;
+}
+
+.btn-volt--full {
+  width: 100%;
+}
+
+.btn-volt--primary {
+  background: var(--volt-primary);
+  color: #ffffff !important;
+  box-shadow: 0 10px 24px rgba(91, 75, 255, 0.28);
+}
+
+.btn-volt--primary:hover {
+  background: var(--volt-primary-dark);
+  color: #ffffff !important;
+}
+
+.btn-volt--outline {
+  background: transparent;
+  border-color: var(--volt-primary);
+  color: var(--volt-primary) !important;
+}
+
+html[data-theme="dark"] .btn-volt--outline {
+  border-color: #9e93ff;
+  color: #c5bdff !important;
+}
+
+.btn-volt--outline:hover {
+  background: var(--volt-primary);
+  color: #ffffff !important;
+}
+
+.btn-volt--ghost {
+  background: var(--volt-surface-soft);
+  color: var(--volt-ink) !important;
+}
+
+.btn-volt--ghost-light {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.34);
+  color: #ffffff !important;
+}
+
+.btn-volt--ghost-light:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.btn-volt--light {
+  background: #ffffff;
+  color: #161332 !important;
+}
+
+.btn-volt--light:hover {
+  background: #ffe7dc;
+}
+
+.btn-volt--disabled {
+  background: var(--volt-surface-soft);
+  color: var(--volt-muted) !important;
+  cursor: not-allowed;
+}
+
+.badge-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 11px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 800;
   line-height: 1.2;
 }
 
-.product-details__price {
-  font-size: 24px;
-  font-weight: bold;
+.badge-pill--violet {
+  background: rgba(91, 75, 255, 0.14);
+  color: var(--volt-primary);
 }
 
-.product-details__stock {
-  color: var(--color-success);
-  font-weight: bold;
+html[data-theme="dark"] .badge-pill--violet {
+  background: rgba(139, 126, 255, 0.22);
+  color: #cbc4ff;
 }
 
-/* Модификатор: товара нет в наличии. */
-.product-details__stock--out {
-  color: var(--color-muted);
+.badge-pill--coral {
+  background: rgba(255, 98, 66, 0.16);
+  color: #d93f1f;
 }
 
-/* Старая цена товара со скидкой. */
-.product-details__old-price {
-  margin-left: var(--space-sm);
-  font-size: 18px;
-  font-weight: normal;
-  color: var(--color-muted);
+html[data-theme="dark"] .badge-pill--coral {
+  background: rgba(255, 98, 66, 0.25);
+  color: #ff9d88;
 }
 
-/* Таблица характеристик занимает всю ширину под фото и описанием. */
-.product-details__specs {
-  grid-column: 1 / -1;
+.badge-pill--mint {
+  background: rgba(13, 150, 104, 0.15);
+  color: #097551;
+}
+
+html[data-theme="dark"] .badge-pill--mint {
+  background: rgba(16, 185, 129, 0.24);
+  color: #6ee7b7;
+}
+
+.badge-pill--amber {
+  background: rgba(245, 158, 11, 0.18);
+  color: #9a5b00;
+}
+
+html[data-theme="dark"] .badge-pill--amber {
+  color: #fcd34d;
+}
+
+.badge-pill--muted {
+  background: var(--volt-surface-soft);
+  color: var(--volt-muted);
+}
+
+/* Hero Section */
+.hero-band {
+  position: relative;
+  padding-block: clamp(36px, 6vw, 68px);
+  background: radial-gradient(circle at 85% 18%, rgba(255, 98, 66, 0.24), transparent 42%),
+              radial-gradient(circle at 12% 80%, rgba(91, 75, 255, 0.35), transparent 48%),
+              linear-gradient(135deg, #15122e 0%, #241d53 60%, #1b1640 100%);
+  color: #ffffff;
+}
+
+.hero-band .eyebrow-tag {
+  background: rgba(255, 255, 255, 0.13);
+  color: #ffd0b8;
+}
+
+.hero-band .hero-lead {
+  color: rgba(244, 243, 255, 0.86);
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+  align-items: center;
+}
+
+.hero-cta-row {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.hero-showcase-card {
+  padding: 18px;
+  border-radius: var(--volt-radius-lg);
+  background: rgba(255, 255, 255, 0.96);
+  color: #161332;
+  box-shadow: 0 24px 54px rgba(7, 5, 22, 0.4);
+}
+
+.hero-showcase-card__tag {
+  margin: 0 0 10px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #4434e2;
+}
+
+.hero-showcase-card__img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: var(--volt-radius-md);
+}
+
+.hero-showcase-card__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.hero-showcase-card__sub {
+  margin: 6px 0 0;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #4b476b;
+}
+
+.hero-showcase-card__price {
+  margin: 0;
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #161332;
+}
+
+/* Section Headers, Cards & Grids */
+.section-header-split {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.text-arrow-link {
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.pillars-grid,
+.cards-grid-three,
+.products-grid,
+.stats-four-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.pillar-card,
+.surface-card,
+.stat-tile {
+  padding: clamp(20px, 3vw, 28px);
+  border-radius: var(--volt-radius-md);
+  background: var(--volt-surface);
+  border: 1px solid var(--volt-line);
+  box-shadow: var(--volt-shadow);
+}
+
+.pillar-card h3 {
+  margin-top: 10px;
+}
+
+.pillar-card p {
+  color: var(--volt-muted);
+}
+
+.stat-tile strong {
+  display: block;
+  font-size: clamp(1.65rem, 3vw, 2.25rem);
+  font-weight: 800;
+  color: var(--volt-primary);
+  margin-bottom: 6px;
+}
+
+html[data-theme="dark"] .stat-tile strong {
+  color: #a99fff;
+}
+
+.stat-tile span {
+  color: var(--volt-muted);
+  font-size: 0.94rem;
+}
+
+.highlight-callout {
+  margin-bottom: 24px;
+  padding: 16px 20px;
+  border-radius: var(--volt-radius-md);
+  border-left: 5px solid var(--volt-coral);
+  background: var(--volt-surface-soft);
+}
+
+.highlight-callout code {
+  padding: 2px 7px;
+  border-radius: 6px;
+  background: var(--volt-surface);
+  font-weight: 800;
+}
+
+/* Product Cards */
+.device-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  border-radius: var(--volt-radius-md);
+  background: var(--volt-surface);
+  border: 1px solid var(--volt-line);
+  box-shadow: var(--volt-shadow);
+  overflow: hidden;
+  transition: transform 200ms var(--ease-smooth), border-color 200ms ease;
+}
+
+.device-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--volt-primary);
+}
+
+.device-card--out {
+  opacity: 0.88;
+}
+
+.device-card__media {
+  display: block;
+  overflow: hidden;
+  background: var(--volt-surface-soft);
+}
+
+.device-card__img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  transition: transform 320ms var(--ease-smooth);
+}
+
+.device-card:hover .device-card__img {
+  transform: scale(1.03);
+}
+
+.device-card__body {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  padding: 18px;
+}
+
+.device-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.fav-heart-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--volt-line);
+  background: var(--volt-surface-soft);
+  color: var(--volt-muted);
+  transition: transform 150ms ease, color 150ms ease, border-color 150ms ease;
+}
+
+.fav-heart-btn:hover {
+  transform: scale(1.06);
+  color: var(--volt-coral);
+}
+
+.fav-heart-btn.is-active {
+  color: var(--volt-coral);
+  border-color: rgba(255, 98, 66, 0.45);
+  background: rgba(255, 98, 66, 0.12);
+}
+
+.device-card__cat {
+  margin: 0 0 6px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--volt-muted);
+}
+
+.device-card__title {
+  font-size: 1.16rem;
+  margin-bottom: 8px;
+  overflow-wrap: anywhere;
+}
+
+.device-card__title a {
+  color: var(--volt-ink) !important;
+}
+
+.device-card__title a:hover {
+  color: var(--volt-primary) !important;
+}
+
+.device-card__desc {
+  color: var(--volt-muted);
+  font-size: 0.93rem;
+  margin-bottom: 16px;
+  overflow-wrap: anywhere;
+}
+
+.device-card__price-row {
+  margin-top: auto;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.device-card__price {
+  font-size: 1.32rem;
+  font-weight: 800;
+}
+
+.device-card__old {
+  font-size: 0.92rem;
+  color: var(--volt-muted);
+}
+
+.device-card__actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+/* CTA Strip */
+.cta-strip {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: clamp(22px, 4vw, 36px);
+  border-radius: var(--volt-radius-lg);
+  background: linear-gradient(135deg, var(--volt-surface-soft) 0%, var(--volt-surface) 100%);
+  border: 1px solid var(--volt-line);
+}
+
+.cta-strip__btns {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Catalog Page */
+.catalog-top-controls {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.filter-pills,
+.product-switcher {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.filter-pill {
+  min-height: 42px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--volt-line);
+  background: var(--volt-surface);
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
+}
+
+.filter-pill:hover {
+  border-color: var(--volt-primary);
+}
+
+.filter-pill.is-active {
+  background: var(--volt-primary);
+  border-color: var(--volt-primary);
+  color: #ffffff;
+}
+
+.search-sort-bar {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  padding: 18px;
+  border-radius: var(--volt-radius-md);
+  background: var(--volt-surface);
+  border: 1px solid var(--volt-line);
+}
+
+.catalog-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.catalog-filters {
+  order: -1;
+  min-width: 0;
+  padding: 20px;
+  border-radius: var(--volt-radius-md);
+  background: var(--volt-surface);
+  border: 1px solid var(--volt-line);
+  box-shadow: var(--volt-shadow);
+}
+
+.catalog-filters__title {
+  font-size: 1.15rem;
+  margin-bottom: 14px;
+}
+
+.filters-stack {
+  display: grid;
+  gap: 14px;
+}
+
+.catalog-filters__count {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--volt-muted);
+}
+
+.catalog-results {
+  min-width: 0;
+}
+
+.empty-state-box {
+  padding: 32px 20px;
+  text-align: center;
+  border-radius: var(--volt-radius-md);
+  background: var(--volt-surface);
+  border: 1px dashed var(--volt-line);
+}
+
+/* Forms & Inputs */
+.field-box,
+.order-form__field {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
+.field-label {
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.field-input {
+  width: 100%;
+  min-height: 46px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--volt-line);
+  background: var(--volt-paper);
+  color: var(--volt-ink);
+}
+
+.field-input:focus {
+  border-color: var(--volt-primary);
+  background: var(--volt-surface);
+}
+
+textarea.field-input {
+  min-height: 110px;
+  resize: vertical;
+}
+
+.check-row,
+.check-tile {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.check-row input,
+.check-tile input {
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  flex-shrink: 0;
+  accent-color: var(--volt-primary);
+}
+
+.check-tile {
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--volt-line);
+  background: var(--volt-paper);
+}
+
+/* Product Detail Page & Adaptive Table */
+.product-page-flow {
+  display: grid;
+  gap: 24px;
+}
+
+.breadcrumbs-bar {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--volt-muted);
+}
+
+.product-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.product-media-card,
+.framed-figure {
+  margin: 0;
+  padding: 14px;
+  border-radius: var(--volt-radius-lg);
+  background: var(--volt-surface);
+  border: 1px solid var(--volt-line);
+  box-shadow: var(--volt-shadow);
+}
+
+.product-media-card__img,
+.framed-figure img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: var(--volt-radius-md);
+}
+
+.framed-figure figcaption {
+  margin-top: 10px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--volt-muted);
+}
+
+.product-summary-panel {
+  padding: clamp(20px, 3vw, 30px);
+  border-radius: var(--volt-radius-lg);
+  background: var(--volt-surface);
+  border: 1px solid var(--volt-line);
+  box-shadow: var(--volt-shadow);
+}
+
+.specs-mini-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin-block: 18px;
+}
+
+.specs-mini-card {
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: var(--volt-paper);
+  border: 1px solid var(--volt-line);
+}
+
+.specs-mini-card span {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--volt-muted);
+}
+
+.product-buy-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-top: 16px;
+  border-top: 1px solid var(--volt-line);
+}
+
+.product-buy-bar__price {
+  font-size: 1.85rem;
+  font-weight: 800;
+  margin-right: 10px;
+}
+
+.product-buy-bar__btns {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.table-wrapper {
+  width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 12px;
+  border: 1px solid var(--volt-line);
 }
 
 .product-table {
   width: 100%;
-  max-width: 720px;
+  min-width: 580px;
   border-collapse: collapse;
 }
 
-.product-table__caption {
-  margin-bottom: var(--space-sm);
-  font-size: 20px;
-  font-weight: bold;
+.product-table th,
+.product-table td {
+  padding: 13px 16px;
+  border-bottom: 1px solid var(--volt-line);
   text-align: left;
 }
 
-.product-table__cell {
-  padding: var(--space-sm) var(--space-md);
-  border: 1px solid var(--color-border);
-  text-align: left;
+.product-table thead th {
+  background: var(--volt-surface-soft);
+  font-weight: 800;
 }
 
-/* Модификатор: ячейка в строке заголовков таблицы. */
-.product-table__cell--head {
-  background-color: var(--color-surface);
+.product-table tbody tr:last-child th,
+.product-table tbody tr:last-child td {
+  border-bottom: none;
 }
 
-/*
-  Частые вопросы: details и summary раскрывают ответ без JavaScript,
-  с клавиатуры (Tab, Enter, пробел) и с правильной ролью для скринридера.
-*/
-.faq {
+/* Checklist */
+.checklist-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.progress-track {
+  height: 10px;
+  border-radius: 999px;
+  background: var(--volt-surface-soft);
+  overflow: hidden;
+  margin-bottom: 18px;
+}
+
+.progress-track__fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--volt-primary), var(--volt-coral));
+  transition: width 240ms var(--ease-smooth);
+}
+
+.checklist-grid {
   display: grid;
-  gap: var(--space-sm);
-  max-width: 720px;
+  grid-template-columns: 1fr;
+  gap: 10px;
 }
 
-.faq__item {
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  background-color: var(--color-bg);
-}
-
-/* Атрибут open появляется у раскрытого вопроса. */
-.faq__item[open] {
-  border-color: var(--color-primary);
-}
-
-/* Скругление нужно, чтобы рамка фокуса повторяла форму вопроса. */
-.faq__question {
-  padding: var(--space-md);
-  border-radius: var(--radius-md);
-  font-weight: bold;
+.checklist-tile {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--volt-line);
+  background: var(--volt-paper);
+  font-weight: 600;
   cursor: pointer;
 }
 
-.faq__question:hover {
-  color: var(--color-primary);
+.checklist-tile input {
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  flex-shrink: 0;
+  accent-color: var(--volt-mint);
 }
 
-.faq__answer {
-  margin: 0;
-  padding: 0 var(--space-md) var(--space-md);
+.checklist-tile.is-done {
+  border-color: rgba(13, 150, 104, 0.45);
+  background: rgba(13, 150, 104, 0.08);
 }
 
-/* Вспомогательная информация выделена фоном и левой рамкой. */
-.aside-info {
-  max-width: var(--container-width);
-  margin: 0 auto var(--space-xl);
-  padding: var(--space-md);
-  border-left: 4px solid var(--color-primary);
-  background-color: var(--color-surface);
+/* Order Calculator */
+.order-two-col {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
 }
 
-/*
-  Кнопка «Наверх» закреплена относительно окна браузера:
-  при прокрутке она остаётся в правом нижнем углу экрана.
-  z-index поднимает её над карточками, у которых есть position.
-*/
-.to-top {
-  position: fixed;
-  right: var(--space-lg);
-  bottom: var(--space-lg);
-  z-index: 10;
-}
-
-/* ===============================
-   5. Форма и модальное окно
-   =============================== */
-
-/*
-  Модальное окно.
-  Элемент dialog сам умеет открываться поверх страницы.
-*/
-.order-dialog {
-  width: min(100% - 32px, 560px);
-  padding: var(--space-lg);
-  border: none;
-  border-radius: var(--radius-lg);
-}
-
-/* Затемнение фона за модальным окном. */
-.order-dialog::backdrop {
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-.order-dialog__title {
-  margin-top: 0;
-}
-
-/*
-  Пока модальное окно открыто (у dialog есть атрибут open),
-  страница под ним не прокручивается.
-*/
-body:has(.order-dialog[open]) {
-  overflow: hidden;
-}
-
-/* На странице заявки форма не растягивается на всю ширину контейнера. */
 .order-form {
-  max-width: 560px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
 }
 
-/* Каждое поле формы получает нижний отступ. */
-.order-form__field {
-  margin-bottom: var(--space-md);
+.addons-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
 }
 
-.order-form__label {
-  display: block;
-  margin-bottom: var(--space-xs);
+.promo-inline-row {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.order-form__input,
-.order-form__select,
-.order-form__textarea {
+.promo-hint {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--volt-muted);
+}
+
+.calc-box {
+  padding: 18px;
+  border-radius: var(--volt-radius-md);
+  background: linear-gradient(135deg, #1b1642 0%, #2b2266 100%);
+  color: #ffffff;
+  display: grid;
+  gap: 8px;
+}
+
+.calc-box__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 0.94rem;
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.calc-box__row--discount strong {
+  color: #ff9c7e;
+}
+
+.calc-box__total {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 10px;
+  margin-top: 4px;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  font-weight: 800;
+}
+
+.calc-box__sum {
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: #ffd37a;
+}
+
+.status-banner {
+  margin: 0;
+  padding: 14px 16px;
+  border-radius: 12px;
+  font-weight: 700;
+}
+
+.status-banner--success {
+  background: rgba(13, 150, 104, 0.14);
+  border: 1px solid rgba(13, 150, 104, 0.4);
+  color: var(--volt-ink);
+}
+
+.status-banner--error {
+  background: rgba(255, 98, 66, 0.15);
+  border: 1px solid rgba(255, 98, 66, 0.45);
+  color: var(--volt-ink);
+}
+
+.inline-link-btn {
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--volt-primary);
+  font-weight: 800;
+  text-decoration: underline;
+}
+
+/* About & Contacts */
+.about-interactive-stack {
+  display: grid;
+  gap: 24px;
+}
+
+.rating-chip {
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: var(--volt-surface-soft);
+  font-weight: 800;
+}
+
+.review-card-body {
+  padding: 20px;
+  border-radius: var(--volt-radius-md);
+  background: var(--volt-paper);
+  border: 1px solid var(--volt-line);
+}
+
+.review-quote {
+  margin: 12px 0;
+  font-size: clamp(1.04rem, 1.8vw, 1.24rem);
+  font-weight: 600;
+}
+
+.review-author {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--volt-muted);
+}
+
+.carousel-controls-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.carousel-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.carousel-dot {
+  width: 12px;
+  height: 12px;
+  padding: 0;
+  border-radius: 999px;
+  border: none;
+  background: var(--volt-line);
+}
+
+.carousel-dot.is-active {
+  width: 28px;
+  background: var(--volt-primary);
+}
+
+.carousel-nav-btns {
+  display: flex;
+  gap: 8px;
+}
+
+.faq-accordion {
+  display: grid;
+  gap: 10px;
+}
+
+.faq-card {
+  border-radius: 12px;
+  border: 1px solid var(--volt-line);
+  background: var(--volt-paper);
+}
+
+.faq-card.is-open {
+  border-color: var(--volt-primary);
+  background: var(--volt-surface);
+}
+
+.faq-card__trigger {
   width: 100%;
-  padding: 10px 12px;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  font: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 15px 18px;
+  border: none;
+  background: transparent;
+  text-align: left;
+  font-weight: 800;
 }
 
-/*
-  Звёздочка у обязательных полей. Скринридер её не читает (aria-hidden):
-  обязательность поля он узнаёт из атрибута required.
-*/
-.order-form__required {
-  color: var(--color-danger);
+.faq-card__sign {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--volt-surface-soft);
+  color: var(--volt-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
-.order-form__note {
-  margin: 0 0 var(--space-md);
-  color: var(--color-muted);
+.faq-card__answer {
+  padding: 0 18px 16px;
+  margin: 0;
+  color: var(--volt-muted);
 }
 
-/* Текст ошибки под полем. Пока ошибки нет, пустой блок не занимает места. */
-.order-form__error {
-  display: block;
-  margin-top: var(--space-xs);
-  font-size: 14px;
-  color: var(--color-danger);
+.keyval-list {
+  list-style: none;
+  margin: 14px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
 }
 
-.order-form__error:empty {
+.keyval-list li {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed var(--volt-line);
+}
+
+.keyval-list li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.map-split-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+}
+
+.visit-card {
+  padding: clamp(22px, 4vw, 34px);
+  border-radius: var(--volt-radius-lg);
+  background: linear-gradient(145deg, #181438 0%, #2c2368 100%);
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.visit-card .eyebrow-tag {
+  background: rgba(255, 255, 255, 0.14);
+  color: #ffd0b8;
+}
+
+.visit-card__lead {
+  color: rgba(255, 255, 255, 0.84);
+}
+
+.visit-card__addr {
+  font-style: normal;
+  display: grid;
+  gap: 6px;
+}
+
+.visit-card__addr a {
+  color: #ffd37a !important;
+  font-weight: 800;
+}
+
+.map-embed-card {
+  border-radius: var(--volt-radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--volt-line);
+  min-height: 320px;
+}
+
+.map-embed-card iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+  border: 0;
+}
+
+.contacts-feedback-box {
+  display: grid;
+  gap: 16px;
+}
+
+/* 3-Column Footer strictly per assignment */
+.site-footer {
+  background: #13102b;
+  color: rgba(244, 243, 255, 0.88);
+  padding: 44px 0 96px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-three-col {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+.footer-logo-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  color: #ffffff !important;
+}
+
+.footer-logo-row__graphic {
+  width: 46px;
+  height: 46px;
+  border-radius: 13px;
+  flex-shrink: 0;
+}
+
+.footer-logo-row__wordmark {
+  font-size: 1.55rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.footer-slogan {
+  max-width: 36ch;
+  color: rgba(244, 243, 255, 0.78);
+  margin-bottom: 12px;
+}
+
+.footer-copyright {
+  margin: 0;
+  font-size: 0.86rem;
+  color: rgba(244, 243, 255, 0.6);
+}
+
+.footer-heading {
+  font-size: 1.05rem;
+  color: #ffffff;
+  margin-bottom: 14px;
+}
+
+.footer-nav-list,
+.footer-contacts-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.footer-nav-link,
+.footer-contacts-list li {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(244, 243, 255, 0.86) !important;
+  font-weight: 600;
+}
+
+.footer-nav-link:hover,
+.footer-contacts-list a:hover {
+  color: #ffb84d !important;
+}
+
+.footer-contacts-list a {
+  color: rgba(244, 243, 255, 0.9) !important;
+}
+
+.footer-address {
+  font-style: normal;
+}
+
+.footer-icon {
+  width: 18px;
+  height: 18px;
+  color: #ff8a65;
+  flex-shrink: 0;
+}
+
+.footer-social-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.social-pill {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 150ms ease, transform 150ms ease;
+}
+
+.social-pill:hover {
+  background: var(--volt-primary);
+  transform: translateY(-2px);
+}
+
+/* Floating Left Chat Widget */
+.chat-widget {
+  position: fixed;
+  left: 14px;
+  bottom: 14px;
+  z-index: 1200;
+}
+
+.chat-launcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 46px;
+  padding: 8px 16px;
+  white-space: nowrap;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: linear-gradient(135deg, #1b1642 0%, #5b4bff 100%);
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 0.9rem;
+  box-shadow: 0 14px 32px rgba(22, 19, 50, 0.36);
+}
+
+.chat-launcher__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.28);
+}
+
+.chat-launcher__label {
   display: none;
 }
 
-/* Подсказка под полем телефона. */
-.order-form__hint {
-  display: block;
-  margin-top: var(--space-xs);
-  color: var(--color-muted);
-}
-
-.order-form__input:hover,
-.order-form__select:hover,
-.order-form__textarea:hover {
-  border-color: var(--color-primary);
-}
-
-/* Поле в фокусе (после щелчка мышью или клавиши Tab) выделяется фоном. */
-.order-form__input:focus,
-.order-form__select:focus,
-.order-form__textarea:focus {
-  background-color: var(--color-surface-accent);
-}
-
-/*
-  Подсветка ошибочных полей. Атрибут aria-invalid добавляет JavaScript.
-  Селектор такой же силы, как у :hover, и стоит после него,
-  поэтому красная рамка не перебивается обычной и синей.
-*/
-.order-form__input[aria-invalid="true"],
-.order-form__select[aria-invalid="true"],
-.order-form__textarea[aria-invalid="true"] {
-  border-color: var(--color-danger);
-}
-
-/* Кнопки формы. */
-.order-form__actions {
+.chat-panel {
+  width: min(calc(100vw - 28px), 360px);
+  margin-bottom: 10px;
+  border-radius: 20px;
+  background: var(--volt-surface);
+  border: 1px solid var(--volt-line);
+  box-shadow: 0 24px 56px rgba(12, 10, 30, 0.34);
+  overflow: hidden;
   display: flex;
-  gap: var(--space-md);
-  margin-top: var(--space-lg);
+  flex-direction: column;
 }
 
-/* Сообщение об успешной отправке. */
-.success-message {
-  max-width: var(--container-width);
-  margin: var(--space-lg) auto;
-  padding: var(--space-md);
-  border-left: 4px solid var(--color-success);
-  background-color: var(--color-success-bg);
+.chat-panel__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 14px 16px;
+  background: linear-gradient(135deg, #1b1642 0%, #3d319c 100%);
+  color: #ffffff;
+}
+
+.chat-panel__agent {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.chat-panel__avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--volt-coral);
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chat-panel__name {
+  display: block;
+  font-size: 0.92rem;
+}
+
+.chat-panel__status {
+  display: block;
+  font-size: 0.76rem;
+  opacity: 0.84;
+}
+
+.chat-panel__messages {
+  max-height: 240px;
+  overflow-y: auto;
+  padding: 14px;
+  display: grid;
+  gap: 10px;
+  background: var(--volt-paper);
+}
+
+.chat-bubble {
+  max-width: 88%;
+  padding: 10px 13px;
+  border-radius: 14px;
+  font-size: 0.88rem;
+}
+
+.chat-bubble--bot {
+  justify-self: start;
+  background: var(--volt-surface);
+  border: 1px solid var(--volt-line);
+}
+
+.chat-bubble--user {
+  justify-self: end;
+  background: var(--volt-primary);
+  color: #ffffff;
+}
+
+.chat-bubble__text {
+  margin: 0 0 4px;
+}
+
+.chat-bubble__time {
+  font-size: 0.7rem;
+  opacity: 0.7;
+}
+
+.chat-panel__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 10px 12px;
+  border-top: 1px solid var(--volt-line);
+  background: var(--volt-surface);
+}
+
+.chat-chip {
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--volt-line);
+  background: var(--volt-surface-soft);
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.chat-chip:hover {
+  background: var(--volt-primary);
+  color: #ffffff;
+}
+
+.chat-panel__form {
+  display: flex;
+  gap: 8px;
+  padding: 10px 12px;
+  border-top: 1px solid var(--volt-line);
+  background: var(--volt-surface);
+}
+
+.chat-panel__input {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 40px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--volt-line);
+  background: var(--volt-paper);
+}
+
+.chat-panel__send {
+  width: 42px;
+  height: 40px;
+  border-radius: 10px;
+  border: none;
+  background: var(--volt-primary);
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Stylized Right Top Button (NO ARROW — Bolt + Progress Ring Capsule!) */
+.volt-top-capsule {
+  position: fixed;
+  right: 14px;
+  bottom: 14px;
+  z-index: 1180;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 48px;
+  padding: 6px 14px 6px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  background: linear-gradient(135deg, #211b4e 0%, #ff6242 140%);
+  color: #ffffff;
+  box-shadow: 0 14px 32px rgba(22, 19, 50, 0.34);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(16px);
+  transition: opacity 200ms ease, transform 200ms var(--ease-smooth);
+}
+
+.volt-top-capsule.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.volt-top-capsule__ring-wrap {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.volt-top-capsule__ring {
+  width: 36px;
+  height: 36px;
+  transform: rotate(-90deg);
+}
+
+.volt-top-capsule__track {
+  fill: rgba(255, 255, 255, 0.1);
+  stroke: rgba(255, 255, 255, 0.22);
+  stroke-width: 3;
+}
+
+.volt-top-capsule__fill {
+  fill: none;
+  stroke: #ffd37a;
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+.volt-top-capsule__bolt {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  color: #ffd37a;
+}
+
+.volt-top-capsule__meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.05;
+}
+
+.volt-top-capsule__title {
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.volt-top-capsule__pct {
+  font-size: 0.7rem;
+  color: #ffd37a;
+  font-weight: 700;
+}
+
+/* Modals (Personal Cabinet & Quick Order) */
+.modal-backdrop-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 2200;
+  padding: 16px;
+  background: rgba(11, 9, 26, 0.68);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-card {
+  width: min(100%, 520px);
+  max-height: calc(100svh - 32px);
+  overflow-y: auto;
+  padding: clamp(18px, 3vw, 28px);
+  border-radius: var(--volt-radius-lg);
+  background: var(--volt-surface);
+  border: 1px solid var(--volt-line);
+  box-shadow: 0 28px 68px rgba(0, 0, 0, 0.44);
+}
+
+.modal-card--wide {
+  width: min(100%, 720px);
+}
+
+.modal-card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.modal-card__title {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.icon-close-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(150, 144, 196, 0.35);
+  background: transparent;
+  color: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cabinet-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--volt-line);
+}
+
+.cabinet-tab {
+  min-height: 40px;
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--volt-line);
+  background: var(--volt-paper);
+  font-weight: 800;
+  font-size: 0.88rem;
+}
+
+.cabinet-tab.is-active {
+  background: var(--volt-primary);
+  border-color: var(--volt-primary);
+  color: #ffffff;
+}
+
+.cabinet-section,
+.cabinet-form,
+.cabinet-list {
+  display: grid;
+  gap: 14px;
+}
+
+.loyalty-banner {
+  padding: 18px;
+  border-radius: var(--volt-radius-md);
+  background: linear-gradient(135deg, #231c58 0%, #5b4bff 100%);
+  color: #ffffff;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.loyalty-banner__label {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #ffd37a;
+}
+
+.loyalty-banner__points {
+  margin: 4px 0;
+  font-size: 1.7rem;
+  font-weight: 800;
+}
+
+.loyalty-banner__hint {
+  margin: 0;
+  font-size: 0.85rem;
+  opacity: 0.88;
+}
+
+.form-grid-two {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.cabinet-item,
+.cabinet-order-row,
+.quick-product-preview {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: var(--volt-paper);
+  border: 1px solid var(--volt-line);
+}
+
+.cabinet-item__img,
+.quick-product-preview img {
+  width: 84px;
+  height: 58px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.cabinet-item__info {
+  flex: 1 1 180px;
+}
+
+.cabinet-item__title {
+  font-weight: 800;
+  color: var(--volt-ink) !important;
+}
+
+.cabinet-item__meta,
+.cabinet-order-row__name {
+  margin: 4px 0;
+  font-size: 0.9rem;
+  color: var(--volt-muted);
+}
+
+.cabinet-item__actions,
+.modal-actions-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.cabinet-order-row__sum {
+  font-size: 1.2rem;
 }

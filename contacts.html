@@ -3,97 +3,120 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Контактная информация и обратная связь учебного интернет-магазина ShopProject.">
-  <title>Контакты - Учебный интернет-магазин</title>
+  <meta name="description" content="Контакты, адреса шоурумов и карта проезда магазина техники VoltMirea в Москве.">
+  <title>Контакты и шоурумы — VoltMirea</title>
+  <script>document.documentElement.dataset.theme=localStorage.getItem('voltmirea-theme')||'light';</script>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/responsive.css">
 </head>
-<body>
-  <header class="site-header">
-    <div class="site-header__inner">
-      <a class="site-header__logo" href="index.html">ShopProject</a>
+<body data-page="contacts">
+  <a class="skip-link" href="#main-content">Перейти к основному содержимому</a>
 
-      <nav class="site-nav" aria-label="Основная навигация">
-        <ul class="site-nav__list">
-          <li class="site-nav__item"><a class="site-nav__link" href="index.html">Главная</a></li>
-          <li class="site-nav__item"><a class="site-nav__link" href="catalog.html">Каталог</a></li>
-          <li class="site-nav__item"><a class="site-nav__link" href="order.html">Заявка</a></li>
-          <li class="site-nav__item"><a class="site-nav__link site-nav__link--active" href="contacts.html" aria-current="page">Контакты</a></li>
-          <li class="site-nav__item"><a class="site-nav__link" href="index.html#advantages">Преимущества</a></li>
-          <li class="site-nav__item"><a class="site-nav__link" href="index.html#popular">Популярные товары</a></li>
-          <li class="site-nav__item"><a class="site-nav__link" href="index.html#contacts">Обратная связь</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+  <header id="react-header" class="site-header-wrap"></header>
 
-  <main>
-    <nav class="breadcrumbs" aria-label="Хлебные крошки">
-      <a class="breadcrumbs__link" href="index.html">Главная</a>
-      <span class="breadcrumbs__current" aria-current="page">Контакты</span>
-    </nav>
-
-    <section class="section">
-      <h1>Контакты</h1>
-      <p>Контактная информация учебного интернет-магазина.</p>
-      <ul>
-        <li>Телефон: +7 (900) 000-00-00</li>
-        <li>E-mail: info@example.com</li>
-        <li>Адрес: г. Москва, учебный проект</li>
-      </ul>
-    </section>
-
-    <section class="section" id="feedback">
-      <h2 class="section__title">Обратная связь</h2>
-      <p>
-        Заявку можно оставить на странице оформления заявки
-        или кнопкой «Заказать» в карточке товара на главной странице.
-      </p>
-      <a class="button button--primary" href="order.html">Оформить заявку</a>
-      <p><a href="index.html#contacts">Обратная связь на главной странице</a></p>
-    </section>
-
-    <section class="section" id="faq">
-      <h2 class="section__title">Частые вопросы</h2>
-      <div class="faq">
-        <details class="faq__item">
-          <summary class="faq__question">Как оформить заявку?</summary>
-          <p class="faq__answer">
-            Нажмите «Заказать» в карточке товара на главной странице
-            или заполните форму на странице «Заявка».
+  <main id="main-content" tabindex="-1">
+    <section class="container section-block section-block--tight" aria-labelledby="contacts-page-title">
+      <div class="section-header-split">
+        <div>
+          <span class="eyebrow-tag">Шоурумы, пункты выдачи и сервис</span>
+          <h1 class="page-h1" id="contacts-page-title">Контакты VoltMirea</h1>
+          <p class="lead-paragraph">
+            Заходите протестировать девайсы в наши московские шоурумы рядом с учебными кампусами или свяжитесь с инженером-консультантом онлайн.
           </p>
-        </details>
-        <details class="faq__item">
-          <summary class="faq__question">Нужно ли платить при оформлении заявки?</summary>
-          <p class="faq__answer">
-            Нет. Заявка ни к чему не обязывает: мы свяжемся с вами,
-            уточним детали и подтвердим заказ.
-          </p>
-        </details>
-        <details class="faq__item">
-          <summary class="faq__question">Когда со мной свяжутся?</summary>
-          <p class="faq__answer">
-            В течение рабочего дня по телефону или e-mail, указанным в заявке.
-          </p>
-        </details>
-        <details class="faq__item">
-          <summary class="faq__question">Можно ли заказать товар, которого нет в наличии?</summary>
-          <p class="faq__answer">
-            Пока нет: у такого товара кнопка заказа отключена.
-            Когда товар появится, кнопка снова станет активной.
-          </p>
-        </details>
+        </div>
+        <a class="btn-volt btn-volt--primary" href="order.html">Оформить самовывоз</a>
       </div>
+    </section>
+
+    <section class="container section-block" aria-labelledby="channels-title">
+      <h2 class="visually-hidden" id="channels-title">Адреса и способы связи</h2>
+      <div class="pillars-grid">
+        <article class="surface-card info-list-card">
+          <div class="device-card__top">
+            <h3>Шоурумы в Москве</h3>
+            <span class="badge-pill badge-pill--violet">Демо-зона</span>
+          </div>
+          <ul class="keyval-list">
+            <li><span>Пр-т Вернадского, 78</span><strong>09:00–21:00</strong></li>
+            <li><span>Ул. Стромынка, 20</span><strong>10:00–20:00</strong></li>
+            <li><span>Малая Пироговская, 1</span><strong>10:00–20:00</strong></li>
+          </ul>
+        </article>
+
+        <article class="surface-card info-list-card">
+          <div class="device-card__top">
+            <h3>Прямая связь</h3>
+            <span class="badge-pill badge-pill--mint">Без выходных</span>
+          </div>
+          <ul class="keyval-list">
+            <li><span>Телефон</span><strong><a href="tel:+74952150778">+7 (495) 215-07-78</a></strong></li>
+            <li><span>Почта заказов</span><strong><a href="mailto:hello@voltmirea.ru">hello@voltmirea.ru</a></strong></li>
+            <li><span>Сервисный отдел</span><strong><a href="mailto:service@voltmirea.ru">service@voltmirea.ru</a></strong></li>
+          </ul>
+        </article>
+
+        <article class="surface-card info-list-card">
+          <div class="device-card__top">
+            <h3>Доставка и выдача</h3>
+            <span class="badge-pill badge-pill--coral">Быстро</span>
+          </div>
+          <ul class="keyval-list">
+            <li><span>Самовывоз из шоурума</span><strong>0 ₽ · 30 мин</strong></li>
+            <li><span>Экспресс по Москве</span><strong>690 ₽ · 2 часа</strong></li>
+            <li><span>Бесплатная доставка</span><strong>от 10 000 ₽</strong></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="container section-block" aria-labelledby="map-section-title">
+      <div class="map-split-grid">
+        <div class="visit-card">
+          <div>
+            <span class="eyebrow-tag">Главный шоурум</span>
+            <h2 class="section-h2" id="map-section-title">Как нас найти у м. Юго-Западная</h2>
+            <p class="visit-card__lead">
+              Пять минут пешком от главного кампуса: стенд переключателей, зона прослушивания наушников и выдача интернет-заказов.
+            </p>
+          </div>
+          <address class="visit-card__addr">
+            <strong>г. Москва, проспект Вернадского, 78</strong>
+            <span>Ежедневно с 09:00 до 21:00 без перерывов</span>
+            <a href="tel:+74952150778">+7 (495) 215-07-78</a>
+          </address>
+          <a
+            class="btn-volt btn-volt--light"
+            href="https://yandex.ru/maps/?ll=37.480000%2C55.669900&amp;mode=routes&amp;rtext=~55.669900%2C37.480000&amp;rtt=auto&amp;z=16"
+            target="_blank"
+            rel="noopener noreferrer"
+          >Построить маршрут на карте</a>
+        </div>
+
+        <div class="map-embed-card">
+          <iframe
+            src="https://yandex.ru/map-widget/v1/?ll=37.480000%2C55.669900&amp;z=16&amp;pt=37.480000%2C55.669900%2Cpm2rdm"
+            width="960"
+            height="460"
+            loading="lazy"
+            title="Флагманский шоурум VoltMirea на карте Москвы"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section class="container section-block section-block--last" aria-label="Быстрый вопрос консультанту">
+      <div id="react-contacts-feedback"></div>
     </section>
   </main>
 
-  <footer class="site-footer" id="contacts">
-    <div class="site-footer__inner">
-      <p>&copy; 2026 Учебный проект</p>
-      <p>Дисциплина: Фронтенд и бэкенд разработка</p>
-      <p>Выполнил: Явдощук Дмитрий</p>
-      <p>Группа: ЭФБО-11-25</p>
-    </div>
-  </footer>
+  <footer id="react-footer" class="site-footer"></footer>
+  <div id="react-floating-widgets"></div>
+
+  <script src="js/vendor/react.production.min.js"></script>
+  <script src="js/vendor/react-dom.production.min.js"></script>
+  <script src="js/logic.js"></script>
+  <script src="js/components-shell.js"></script>
+  <script src="js/components-pages.js"></script>
 </body>
 </html>

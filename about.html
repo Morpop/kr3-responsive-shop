@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="О магазине VoltMirea: демо-зона техники у кампуса МИРЭА, стандарты проверки, официальная гарантия, отзывы покупателей и частые вопросы.">
+  <title>О магазине — VoltMirea</title>
+  <script>document.documentElement.dataset.theme=localStorage.getItem('voltmirea-theme')||'light';</script>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body data-page="about">
+  <a class="skip-link" href="#main-content">Перейти к основному содержимому</a>
+
+  <header id="react-header" class="site-header-wrap"></header>
+
+  <main id="main-content" tabindex="-1">
+    <section class="container section-block" aria-labelledby="about-title">
+      <div class="product-hero-grid">
+        <div>
+          <span class="eyebrow-tag">История и стандарты VoltMirea</span>
+          <h1 class="page-h1" id="about-title">Магазин техники, созданный вокруг удобного рабочего места</h1>
+          <p class="lead-paragraph">
+            Мы отбираем только те клавиатуры, мыши, мониторы и аудиоустройства, за которыми сами пишем код, монтируем видео и учимся каждый день. Каждая партия проходит ручную проверку в нашем шоуруме в Москве.
+          </p>
+          <div class="hero-cta-row">
+            <a class="btn-volt btn-volt--primary" href="catalog.html">Смотреть устройства</a>
+            <a class="btn-volt btn-volt--outline" href="contacts.html">Адреса шоурумов</a>
+          </div>
+        </div>
+
+        <figure class="framed-figure">
+          <picture>
+            <source media="(min-width: 1024px)" srcset="images/store-showroom-1200.jpg 1200w" sizes="560px">
+            <img
+              src="images/store-showroom-800.jpg"
+              srcset="images/store-showroom-480.jpg 480w, images/store-showroom-800.jpg 800w, images/store-showroom-1200.jpg 1200w"
+              sizes="(max-width: 1023px) 92vw, 560px"
+              alt="Команда инженеров и консультантов VoltMirea тестирует ноутбуки и периферию за общим столом"
+              width="1200"
+              height="800"
+            >
+          </picture>
+          <figcaption>Демо-зона и инженерный стенд проверки девайсов VoltMirea на пр-те Вернадского, 78</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="container section-block" aria-labelledby="stats-title">
+      <h2 class="visually-hidden" id="stats-title">Ключевые показатели магазина</h2>
+      <div class="stats-four-grid">
+        <div class="stat-tile">
+          <strong>2 400+</strong>
+          <span>собранных рабочих сетапов для студентов и IT-специалистов</span>
+        </div>
+        <div class="stat-tile">
+          <strong>24–36 мес.</strong>
+          <span>прямой гарантии с экспресс-заменой в собственном сервисе</span>
+        </div>
+        <div class="stat-tile">
+          <strong>30 минут</strong>
+          <span>готовность интернет-заказа к выдаче в шоуруме без очереди</span>
+        </div>
+        <div class="stat-tile">
+          <strong>0 битых пикселей</strong>
+          <span>бесплатная проверка матриц мониторов и ноутбуков при выдаче</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="container section-block" aria-labelledby="why-title">
+      <div class="section-header-split">
+        <div>
+          <span class="eyebrow-tag">Преимущества сервиса</span>
+          <h2 class="section-h2" id="why-title">Почему покупатели выбирают VoltMirea</h2>
+        </div>
+        <a class="text-arrow-link" href="order.html">Рассчитать заказ со скидкой</a>
+      </div>
+
+      <div class="pillars-grid">
+        <article class="pillar-card">
+          <h3>Открытая демо-зона</h3>
+          <p>Сравните тактильный отклик переключателей, посадку наушников и вес мышей вживую перед покупкой.</p>
+        </article>
+        <article class="pillar-card">
+          <h3>Бонусная система МИРЭА</h3>
+          <p>Постоянная скидка 10% по студенческому билету и начисление 5% бонусами на счёт в Личном кабинете.</p>
+        </article>
+        <article class="pillar-card">
+          <h3>Поддержка экспертов</h3>
+          <p>Живые консультанты в чате и шоуруме помогают подобрать совместимый кабель USB-C, хаб или кронштейн без навязывания.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="container section-block section-block--last" aria-label="Отзывы и частые вопросы">
+      <div id="react-about-app"></div>
+    </section>
+  </main>
+
+  <footer id="react-footer" class="site-footer"></footer>
+  <div id="react-floating-widgets"></div>
+
+  <script src="js/vendor/react.production.min.js"></script>
+  <script src="js/vendor/react-dom.production.min.js"></script>
+  <script src="js/logic.js"></script>
+  <script src="js/components-shell.js"></script>
+  <script src="js/components-pages.js"></script>
+</body>
+</html>

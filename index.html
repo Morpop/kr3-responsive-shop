@@ -3,316 +3,129 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Учебный интернет-магазин ShopProject: популярные товары, преимущества проекта и форма заявки.">
-  <title>ShopProject - Учебный интернет-магазин</title>
+  <meta name="description" content="VoltMirea — современный магазин компьютерной техники, механических клавиатур, беспроводных мышей, аудио и мониторов с клубной скидкой МИРЭА.">
+  <title>VoltMirea — Магазин умной техники и периферии</title>
+  <script>document.documentElement.dataset.theme=localStorage.getItem('voltmirea-theme')||'light';</script>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/responsive.css">
-  <script src="js/main.js" defer></script>
 </head>
-<body>
-  <header class="site-header">
-    <div class="site-header__inner">
-      <a class="site-header__logo" href="index.html">ShopProject</a>
+<body data-page="home">
+  <a class="skip-link" href="#main-content">Перейти к основному содержимому</a>
 
-      <nav class="site-nav" aria-label="Основная навигация">
-        <ul class="site-nav__list">
-          <li class="site-nav__item"><a class="site-nav__link site-nav__link--active" href="index.html" aria-current="page">Главная</a></li>
-          <li class="site-nav__item"><a class="site-nav__link" href="catalog.html">Каталог</a></li>
-          <li class="site-nav__item"><a class="site-nav__link" href="order.html">Заявка</a></li>
-          <li class="site-nav__item"><a class="site-nav__link" href="contacts.html">Контакты</a></li>
-          <li class="site-nav__item"><a class="site-nav__link" href="index.html#advantages">Преимущества</a></li>
-          <li class="site-nav__item"><a class="site-nav__link" href="index.html#popular">Популярные товары</a></li>
-          <li class="site-nav__item"><a class="site-nav__link" href="index.html#contacts">Обратная связь</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+  <header id="react-header" class="site-header-wrap"></header>
 
-  <main>
-    <section class="hero">
-      <div class="hero__content">
-        <h1 class="hero__title">Учебный интернет-магазин</h1>
-        <p class="hero__text">
-          Это главная страница учебного интернет-магазина.
-          В каталоге представлены компьютерные аксессуары,
-          а на странице контактов размещена информация для связи.
-        </p>
-        <a class="button button--primary" href="#popular">Перейти к товарам</a>
+  <main id="main-content" tabindex="-1">
+    <section class="hero-band" aria-labelledby="hero-title">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <span class="eyebrow-tag">Флагманский техно-шоурум у кампуса МИРЭА</span>
+            <h1 class="hero-title" id="hero-title">Собери свой продуктивный сетап</h1>
+            <p class="hero-lead">
+              Механические клавиатуры, ультралёгкие беспроводные мыши, наушники с активным шумоподавлением и 4K-мониторы с проверкой в демо-зоне и гарантией до 3 лет.
+            </p>
+            <div class="hero-cta-row">
+              <a class="btn-volt btn-volt--primary btn-volt--lg" href="catalog.html">Перейти в каталог</a>
+              <button class="btn-volt btn-volt--ghost-light btn-volt--lg" type="button" data-open-quick-order="keyboard">Быстрый заказ</button>
+            </div>
+          </div>
+
+          <div class="hero-showcase-card">
+            <p class="hero-showcase-card__tag">VoltMirea · выбор семестра</p>
+            <picture class="hero-picture">
+              <source media="(min-width: 1024px)" srcset="images/hero-setup-800.jpg 800w, images/hero-setup-1200.jpg 1200w" sizes="480px">
+              <img
+                class="hero-showcase-card__img"
+                src="images/hero-setup-800.jpg"
+                srcset="images/hero-setup-480.jpg 480w, images/hero-setup-800.jpg 800w, images/hero-setup-1200.jpg 1200w"
+                sizes="(max-width: 767px) 92vw, 480px"
+                alt="Современное рабочее место разработчика с монитором, механической клавиатурой, беспроводной мышью и гарнитурой"
+                width="1200"
+                height="800"
+              >
+            </picture>
+            <div class="hero-showcase-card__foot">
+              <div>
+                <span class="badge-pill badge-pill--coral">Скидка −10% по студбилету</span>
+                <p class="hero-showcase-card__sub">Комплект «Код и Стриминг» · тест в шоуруме</p>
+              </div>
+              <p class="hero-showcase-card__price">от 5 400 ₽</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container section-block" aria-labelledby="directions-title">
+      <div class="section-header-split">
+        <div>
+          <span class="eyebrow-tag">Направления каталога</span>
+          <h2 class="section-h2" id="directions-title">Техника под любую задачу</h2>
+        </div>
+        <a class="text-arrow-link" href="about.html">Подробнее о магазине и гарантии</a>
       </div>
 
-      <picture class="hero__picture">
-        <source media="(min-width: 1200px)" srcset="images/hero-desktop.jpg">
-        <source media="(min-width: 768px)" srcset="images/hero-tablet.jpg">
-        <img
-          src="images/hero-mobile.jpg"
-          alt="Каталог компьютерных аксессуаров учебного интернет-магазина"
-          width="640"
-          height="480"
-          class="hero__image"
-        >
-      </picture>
-    </section>
-
-    <section class="section" id="advantages">
-      <h2 class="section__title">Преимущества проекта</h2>
-      <ul class="advantages-list">
-        <li class="advantages-list__item">Понятная HTML-структура.</li>
-        <li class="advantages-list__item">Семантические блоки страницы.</li>
-        <li class="advantages-list__item">Подключение внешнего CSS-файла.</li>
-        <li class="advantages-list__item">Единая навигация между страницами сайта.</li>
-      </ul>
-    </section>
-
-    <section class="section" id="popular">
-      <h2 class="section__title">Популярные товары</h2>
-
-      <div class="products-grid">
-        <article class="product-card">
-          <img
-            class="product-card__image"
-            src="images/mouse-640.jpg"
-            srcset="images/mouse-small.jpg 480w,
-                    images/mouse-640.jpg 640w,
-                    images/mouse.jpg 1000w"
-            sizes="(max-width: 639px) 100vw,
-                   (max-width: 1023px) 50vw,
-                   (max-width: 1279px) 33vw,
-                   25vw"
-            alt="Чёрная проводная мышь"
-            width="640"
-            height="480"
-            loading="lazy"
-          >
-          <p class="product-card__category">Мыши</p>
-          <h3 class="product-card__title"><a class="product-card__link" href="product-mouse.html">Проводная мышь</a></h3>
-          <p class="product-card__description">Компактная USB-мышь для работы и учёбы за компьютером.</p>
-          <p class="product-card__price">Цена: 1 000 руб.</p>
-          <button class="button button--primary product-card__button" type="button" data-product="Проводная мышь">
-            Заказать
-          </button>
+      <div class="pillars-grid">
+        <article class="pillar-card">
+          <span class="badge-pill badge-pill--violet">Ввод и контроль</span>
+          <h3>Клавиатуры и мыши</h3>
+          <p>Кастомные механические клавиатуры с шумоизоляцией Hot-Swap и беспроводные сенсорные мыши весом 54 грамма.</p>
+          <a class="text-arrow-link" href="catalog.html?cat=peripherals">Смотреть периферию</a>
         </article>
 
-        <article class="product-card product-card--new">
-          <img
-            class="product-card__image"
-            src="images/keyboard-640.jpg"
-            srcset="images/keyboard-small.jpg 480w,
-                    images/keyboard-640.jpg 640w,
-                    images/keyboard.jpg 1000w"
-            sizes="(max-width: 639px) 100vw,
-                   (max-width: 1023px) 50vw,
-                   (max-width: 1279px) 33vw,
-                   25vw"
-            alt="Белая клавиатура с цифровым блоком"
-            width="640"
-            height="480"
-            loading="lazy"
-          >
-          <span class="product-card__badge">Новинка</span>
-          <p class="product-card__category">Клавиатуры</p>
-          <h3 class="product-card__title"><a class="product-card__link" href="product.html">Клавиатура</a></h3>
-          <p class="product-card__description">Полноразмерная USB-клавиатура с цифровым блоком для набора текста.</p>
-          <p class="product-card__price">Цена: 1 500 руб.</p>
-          <button class="button button--primary product-card__button" type="button" data-product="Клавиатура">
-            Заказать
-          </button>
+        <article class="pillar-card">
+          <span class="badge-pill badge-pill--coral">Чистый звук</span>
+          <h3>Аудио и стриминг</h3>
+          <p>Наушники с гибридным ANC до −42 дБ для фокуса в коворкинге и студийные USB/XLR-микрофоны для записи и звонков.</p>
+          <a class="text-arrow-link" href="catalog.html?cat=audio">Выбрать аудио</a>
         </article>
 
-        <article class="product-card product-card--discount">
-          <img
-            class="product-card__image"
-            src="images/headset-640.jpg"
-            srcset="images/headset-small.jpg 480w,
-                    images/headset-640.jpg 640w,
-                    images/headset.jpg 1000w"
-            sizes="(max-width: 639px) 100vw,
-                   (max-width: 1023px) 50vw,
-                   (max-width: 1279px) 33vw,
-                   25vw"
-            alt="Белая гарнитура с микрофоном"
-            width="640"
-            height="480"
-            loading="lazy"
-          >
-          <span class="product-card__badge">Скидка</span>
-          <p class="product-card__category">Гарнитуры</p>
-          <h3 class="product-card__title"><a class="product-card__link" href="product-headset.html">Наушники с микрофоном</a></h3>
-          <p class="product-card__description">Проводная гарнитура для онлайн-занятий, общения и прослушивания музыки.</p>
-          <p class="product-card__price">Цена: 1 600 руб. <s class="product-card__old-price">2 000 руб.</s></p>
-          <button class="button button--primary product-card__button" type="button" data-product="Наушники с микрофоном">
-            Заказать
-          </button>
-        </article>
-
-        <article class="product-card product-card--out-of-stock">
-          <img
-            class="product-card__image"
-            src="images/webcam-640.jpg"
-            srcset="images/webcam-small.jpg 480w,
-                    images/webcam-640.jpg 640w,
-                    images/webcam.jpg 1000w"
-            sizes="(max-width: 639px) 100vw,
-                   (max-width: 1023px) 50vw,
-                   (max-width: 1279px) 33vw,
-                   25vw"
-            alt="Чёрная веб-камера на мониторе"
-            width="640"
-            height="480"
-            loading="lazy"
-          >
-          <span class="product-card__badge">Нет в наличии</span>
-          <p class="product-card__category">Веб-камеры</p>
-          <h3 class="product-card__title"><a class="product-card__link" href="product-webcam.html">Веб-камера</a></h3>
-          <p class="product-card__description">Full HD веб-камера для видеозвонков и онлайн-занятий.</p>
-          <p class="product-card__price">Цена: 2 500 руб.</p>
-          <button class="button button--primary product-card__button" type="button" disabled>
-            Нет в наличии
-          </button>
+        <article class="pillar-card">
+          <span class="badge-pill badge-pill--mint">Рабочая станция</span>
+          <h3>Мониторы и ноутбуки</h3>
+          <p>Откалиброванные 27-дюймовые 4K IPS-мониторы с питанием по USB-C 90 Вт и лёгкие OLED-ультрабуки для пар и поездок.</p>
+          <a class="text-arrow-link" href="catalog.html?cat=workstation">Собрать станцию</a>
         </article>
       </div>
     </section>
 
-    <aside class="aside-info">
-      <h2 class="aside-info__title">Информация для студентов</h2>
-      <p class="aside-info__text">
-        Товары и цены приведены для учебного примера. Форма заявки работает
-        без отправки данных на сервер. Интерфейс адаптирован под мобильные,
-        планшетные и настольные экраны по подходу Mobile First.
-      </p>
-    </aside>
+    <section class="container section-block" aria-labelledby="featured-title">
+      <div class="highlight-callout">
+        <strong>Клубная выгода МИРЭА:</strong> используйте промокод <code>MIREA10</code> в калькуляторе заказа для скидки 10% или копите бонусы в Личном кабинете.
+      </div>
+
+      <div class="section-header-split">
+        <div>
+          <span class="eyebrow-tag">Лидеры продаж</span>
+          <h2 class="section-h2" id="featured-title">Популярные девайсы недели</h2>
+        </div>
+        <a class="btn-volt btn-volt--outline" href="catalog.html">Открыть весь каталог</a>
+      </div>
+
+      <div id="react-home-featured"></div>
+    </section>
+
+    <section class="container section-block section-block--last" aria-labelledby="cta-calc-title">
+      <div class="cta-strip">
+        <div>
+          <h2 class="section-h2" id="cta-calc-title">Соберите комплект с мгновенным расчётом скидки</h2>
+          <p class="muted-note">В интерактивном калькуляторе можно выбрать девайсы, расширенную гарантию, экспресс-доставку и применить промокод.</p>
+        </div>
+        <div class="cta-strip__btns">
+          <a class="btn-volt btn-volt--primary" href="order.html">Открыть калькулятор</a>
+          <button class="btn-volt btn-volt--outline" type="button" data-open-chat="true">Спросить консультанта</button>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <footer class="site-footer" id="contacts">
-    <div class="site-footer__inner">
-      <p>&copy; 2026 Учебный проект</p>
-      <p>Дисциплина: Фронтенд и бэкенд разработка</p>
-      <p>Выполнил: Явдощук Дмитрий</p>
-      <p>Группа: ЭФБО-11-25</p>
-    </div>
-  </footer>
+  <footer id="react-footer" class="site-footer"></footer>
+  <div id="react-floating-widgets"></div>
 
-  <a class="button button--primary to-top" href="#top">Наверх</a>
-
-  <dialog class="order-dialog" id="order-dialog" aria-labelledby="order-dialog-title">
-    <h2 class="order-dialog__title" id="order-dialog-title">Оформление заявки</h2>
-    <p class="order-dialog__product">Товар: <strong id="order-dialog-product"></strong></p>
-
-    <form class="order-form" id="order-form" action="#" method="post" novalidate>
-      <input id="selected-product" name="selected-product" type="hidden">
-      <p class="order-form__note">Поля со звёздочкой (*) обязательны для заполнения.</p>
-
-      <div class="order-form__field">
-        <label class="order-form__label" for="order-name">Имя <span class="order-form__required" aria-hidden="true">*</span></label>
-        <input
-          class="order-form__input"
-          id="order-name"
-          aria-describedby="order-name-error"
-          data-error="Введите имя: не меньше 2 символов."
-          name="name"
-          type="text"
-          placeholder="Введите ваше имя"
-          minlength="2"
-          autocomplete="given-name"
-          required
-        >
-        <span class="order-form__error" id="order-name-error"></span>
-      </div>
-
-      <div class="order-form__field">
-        <label class="order-form__label" for="order-email">E-mail <span class="order-form__required" aria-hidden="true">*</span></label>
-        <input
-          class="order-form__input"
-          id="order-email"
-          aria-describedby="order-email-error"
-          data-error="Введите e-mail в формате name@example.com."
-          name="email"
-          type="email"
-          placeholder="example@mail.ru"
-          autocomplete="email"
-          required
-        >
-        <span class="order-form__error" id="order-email-error"></span>
-      </div>
-
-      <div class="order-form__field">
-        <label class="order-form__label" for="order-phone">Телефон <span class="order-form__required" aria-hidden="true">*</span></label>
-        <input
-          class="order-form__input"
-          id="order-phone"
-          aria-describedby="order-phone-hint order-phone-error"
-          data-error="Введите телефон в формате +7 (900) 000-00-00."
-          name="phone"
-          type="tel"
-          inputmode="tel"
-          autocomplete="tel"
-          placeholder="+7 (900) 000-00-00"
-          pattern="^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$"
-          required
-        >
-        <small class="order-form__hint" id="order-phone-hint">Формат: +7 (900) 000-00-00</small>
-        <span class="order-form__error" id="order-phone-error"></span>
-      </div>
-
-      <div class="order-form__field">
-        <label class="order-form__label" for="order-date">Дата связи</label>
-        <input
-          class="order-form__input"
-          id="order-date"
-          name="date"
-          type="date"
-        >
-      </div>
-
-      <div class="order-form__field order-form__field--wide">
-        <label class="order-form__label" for="order-topic">Тема заявки <span class="order-form__required" aria-hidden="true">*</span></label>
-        <select class="order-form__select" id="order-topic" aria-describedby="order-topic-error" data-error="Выберите тему заявки." name="topic" required>
-          <option value="">Выберите тему</option>
-          <option value="product">Заказ товара</option>
-          <option value="consultation">Консультация</option>
-          <option value="delivery">Доставка</option>
-        </select>
-        <span class="order-form__error" id="order-topic-error"></span>
-      </div>
-
-      <div class="order-form__field order-form__field--wide">
-        <label class="order-form__label" for="order-comment">Комментарий</label>
-        <textarea
-          class="order-form__textarea"
-          id="order-comment"
-          name="comment"
-          rows="4"
-          placeholder="Укажите дополнительную информацию"
-        ></textarea>
-      </div>
-
-      <div class="order-form__field order-form__field--checkbox">
-        <label class="order-form__label">
-          <input
-            class="order-form__checkbox"
-            id="order-agreement"
-            aria-describedby="order-agreement-error"
-            data-error="Подтвердите согласие на обработку данных."
-            name="agreement"
-            type="checkbox"
-            required
-          >
-          Я согласен на обработку данных <span class="order-form__required" aria-hidden="true">*</span>
-        </label>
-        <span class="order-form__error" id="order-agreement-error"></span>
-      </div>
-
-      <div class="order-form__actions">
-        <button class="button button--secondary" type="button" id="close-order-dialog">Закрыть</button>
-        <button class="button button--primary" type="submit">Отправить заявку</button>
-      </div>
-    </form>
-
-    <div class="order-dialog__success" id="order-dialog-success" hidden>
-      <p class="success-message" id="success-message" role="status" tabindex="-1">
-        Заявка отправлена! Мы свяжемся с вами в течение рабочего дня.
-      </p>
-      <button class="button button--primary" type="button" id="order-dialog-done">Готово</button>
-    </div>
-  </dialog>
+  <script src="js/vendor/react.production.min.js"></script>
+  <script src="js/vendor/react-dom.production.min.js"></script>
+  <script src="js/logic.js"></script>
+  <script src="js/components-shell.js"></script>
+  <script src="js/components-pages.js"></script>
 </body>
 </html>
