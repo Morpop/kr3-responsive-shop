@@ -109,7 +109,7 @@
           h('a', { className: 'brand-link', href: 'index.html' },
             h('img', {
               className: 'brand-link__logo',
-              src: 'images/dexter-logo.png',
+              src: 'images/dexter-stencil.png',
               alt: 'Логотип GOLDAnaBAlKE',
               width: 44,
               height: 44
@@ -193,7 +193,7 @@
           h('a', { className: 'footer-logo-row', href: 'index.html' },
             h('img', {
               className: 'footer-logo-row__graphic',
-              src: 'images/dexter-logo.png',
+              src: 'images/dexter-stencil.png',
               alt: 'Логотип GOLDAnaBAlKE',
               width: 48,
               height: 48
