@@ -5,6 +5,7 @@
   var useState = React.useState;
   var useEffect = React.useEffect;
   var useMemo = React.useMemo;
+  var useRef = React.useRef;
   var Icon = window.VoltShell.Icon;
   var useVoltStore = window.VoltShell.useVoltStore;
 
@@ -76,11 +77,119 @@
 
   function HomeFeaturedApp() {
     var store = useVoltStore();
-    var featured = store.PRODUCTS.slice(0, 3);
-    return h('div', { className: 'cards-grid-three' },
-      featured.map(function (item) {
-        return h(ProductCard, { key: item.id, item: item, store: store });
-      })
+    var items = store.PRODUCTS;
+    var trackRef = useRef(null);
+    var dragState = useRef({ active: false, startX: 0, scrollStart: 0, moved: false });
+    var _idx = useState(0);
+    var activeIndex = _idx[0];
+    var setActiveIndex = _idx[1];
+
+    function updateActiveFromScroll() {
+      var el = trackRef.current;
+      if (!el || !el.firstElementChild) return;
+      var cardW = el.firstElementChild.getBoundingClientRect().width + 20;
+      if (cardW <= 0) return;
+      var idx = Math.round(el.scrollLeft / cardW);
+      setActiveIndex(Math.max(0, Math.min(items.length - 1, idx)));
+    }
+
+    function scrollByStep(dir) {
+      var el = trackRef.current;
+      if (!el || !el.firstElementChild) return;
+      var cardW = el.firstElementChild.getBoundingClientRect().width + 20;
+      var maxScroll = el.scrollWidth - el.clientWidth;
+      if (dir < 0 && el.scrollLeft <= 8) {
+        el.scrollTo({ left: maxScroll, behavior: 'smooth' });
+        return;
+      }
+      if (dir > 0 && el.scrollLeft >= maxScroll - 8) {
+        el.scrollTo({ left: 0, behavior: 'smooth' });
+        return;
+      }
+      el.scrollBy({ left: dir * cardW, behavior: 'smooth' });
+    }
+
+    function scrollToCard(index) {
+      var el = trackRef.current;
+      if (!el || !el.firstElementChild) return;
+      var cardW = el.firstElementChild.getBoundingClientRect().width + 20;
+      el.scrollTo({ left: index * cardW, behavior: 'smooth' });
+    }
+
+    return h('div', {
+      className: 'featured-slider',
+      'aria-roledescription': 'карусель товаров',
+      'aria-label': 'Популярные устройства недели',
+      onKeyDown: function (e) {
+        if (e.key === 'ArrowLeft') {
+          e.preventDefault();
+          scrollByStep(-1);
+        } else if (e.key === 'ArrowRight') {
+          e.preventDefault();
+          scrollByStep(1);
+        }
+      }
+    },
+      h('div', {
+        className: 'featured-slider__track',
+        ref: trackRef,
+        onScroll: updateActiveFromScroll,
+        onMouseDown: function (e) {
+          if (e.target.closest('a, button')) return;
+          dragState.current = {
+            active: true,
+            startX: e.pageX,
+            scrollStart: trackRef.current.scrollLeft,
+            moved: false
+          };
+        },
+        onMouseMove: function (e) {
+          if (!dragState.current.active || !trackRef.current) return;
+          var dx = e.pageX - dragState.current.startX;
+          if (Math.abs(dx) > 5) dragState.current.moved = true;
+          trackRef.current.scrollLeft = dragState.current.scrollStart - dx;
+        },
+        onMouseUp: function () {
+          dragState.current.active = false;
+        },
+        onMouseLeave: function () {
+          dragState.current.active = false;
+        }
+      },
+        items.map(function (item) {
+          return h('div', { key: item.id, className: 'featured-slider__slide' },
+            h(ProductCard, { item: item, store: store })
+          );
+        })
+      ),
+
+      h('div', { className: 'featured-slider__bar' },
+        h('div', { className: 'carousel-dots', role: 'tablist', 'aria-label': 'Навигация по слайдам' },
+          items.map(function (item, idx) {
+            return h('button', {
+              key: item.id,
+              type: 'button',
+              className: 'carousel-dot' + (idx === activeIndex ? ' is-active' : ''),
+              'aria-label': 'Показать ' + item.shortName,
+              onClick: function () { scrollToCard(idx); }
+            });
+          })
+        ),
+        h('div', { className: 'featured-slider__btns' },
+          h('button', {
+            type: 'button',
+            className: 'slider-step-btn',
+            onClick: function () { scrollByStep(-1); },
+            'aria-label': 'Листать влево'
+          }, '←'),
+          h('button', {
+            type: 'button',
+            className: 'slider-step-btn slider-step-btn--primary',
+            onClick: function () { scrollByStep(1); },
+            'aria-label': 'Листать вправо'
+          }, '→')
+        )
+      )
     );
   }
 

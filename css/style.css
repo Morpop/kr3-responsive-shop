@@ -2056,3 +2056,88 @@ textarea.field-input {
 .cabinet-order-row__sum {
   font-size: 1.2rem;
 }
+
+/* Horizontal Featured Slider on Home Page */
+.featured-slider {
+  width: 100%;
+  min-width: 0;
+}
+
+.featured-slider__track {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 6px 2px 14px;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  cursor: grab;
+}
+
+.featured-slider__track:active {
+  cursor: grabbing;
+}
+
+.featured-slider__track::-webkit-scrollbar {
+  display: none;
+}
+
+.featured-slider__slide {
+  flex: 0 0 86%;
+  min-width: 0;
+  scroll-snap-align: start;
+  display: flex;
+}
+
+.featured-slider__slide > .device-card {
+  width: 100%;
+}
+
+.featured-slider__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 12px;
+}
+
+.featured-slider__btns {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.slider-step-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--volt-line);
+  background: var(--volt-surface);
+  color: var(--volt-ink);
+  font-size: 1.15rem;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--volt-shadow);
+  transition: transform 150ms ease, background-color 150ms ease, border-color 150ms ease, color 150ms ease;
+}
+
+.slider-step-btn:hover {
+  border-color: var(--volt-primary);
+  color: var(--volt-primary);
+  transform: translateY(-2px);
+}
+
+.slider-step-btn--primary {
+  background: var(--volt-primary);
+  border-color: var(--volt-primary);
+  color: #ffffff;
+}
+
+.slider-step-btn--primary:hover {
+  background: var(--volt-primary-dark);
+  border-color: var(--volt-primary-dark);
+  color: #ffffff;
+}

@@ -28,6 +28,10 @@
 }
 
 @media (min-width: 640px) {
+  .featured-slider__slide {
+    flex: 0 0 calc((100% - 20px) / 2);
+  }
+
   .products-grid,
   .cards-grid-three,
   .stats-four-grid,
@@ -136,6 +140,10 @@
 
   .cards-grid-three {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .featured-slider__slide {
+    flex: 0 0 calc((100% - 40px) / 3);
   }
 
   .stats-four-grid {
