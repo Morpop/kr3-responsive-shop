@@ -239,7 +239,7 @@
                 checked: onlyInStock,
                 onChange: function (e) { setOnlyInStock(e.target.checked); }
               }),
-              h('span', null, 'Только в наличии сегодня')
+              h('span', null, 'Только в наличии в магазине')
             ),
             h('p', { className: 'catalog-filters__count', 'aria-live': 'polite' },
               'Найдено устройств: ' + filtered.length
@@ -352,7 +352,7 @@
               h('strong', null, product.categoryLabel)
             ),
             h('div', { className: 'specs-mini-card' },
-              h('span', null, 'Рейтинг покупателей'),
+              h('span', null, 'Оценка покупателей'),
               h('strong', null, '★ ' + product.rating + ' из 5,0')
             ),
             h('div', { className: 'specs-mini-card' },
@@ -360,8 +360,8 @@
               h('strong', null, product.warranty)
             ),
             h('div', { className: 'specs-mini-card' },
-              h('span', null, 'Статус наличия'),
-              h('strong', null, product.inStock ? 'В наличии в шоуруме' : 'Ожидается поставка')
+              h('span', null, 'Наличие'),
+              h('strong', null, product.inStock ? 'В наличии в магазине' : 'Ожидается поставка')
             )
           ),
 
@@ -379,7 +379,7 @@
               h('a', {
                 className: 'btn-volt btn-volt--primary',
                 href: 'order.html?product=' + product.id
-              }, 'Рассчитать со скидкой')
+              }, 'Оформить с опциями')
             )
           )
         )
@@ -411,8 +411,8 @@
       h('section', { className: 'surface-card' },
         h('div', { className: 'checklist-header' },
           h('div', null,
-            h('h2', { className: 'section-h2' }, 'Чек-лист идеального рабочего места'),
-            h('p', { className: 'muted-note' }, 'Отмечайте шаги настройки сетапа — прогресс сохраняется автоматически.')
+            h('h2', { className: 'section-h2' }, 'Чек-лист настройки рабочего места'),
+            h('p', { className: 'muted-note' }, 'Отмечайте этапы подключения и эргономики — прогресс сохраняется в браузере.')
           ),
           h('span', { className: 'badge-pill badge-pill--violet', 'aria-live': 'polite' },
             'Готово: ' + completedCount + ' из ' + store.CHECKLIST_ITEMS.length + ' (' + pct + '%)'
@@ -459,29 +459,17 @@
     var quantity = _qty[0];
     var setQuantity = _qty[1];
 
-    var _tar = useState('student');
-    var tariff = _tar[0];
-    var setTariff = _tar[1];
+    var _del = useState('pickup');
+    var deliveryMethod = _del[0];
+    var setDeliveryMethod = _del[1];
 
     var _w = useState(true);
     var warrantyPlus = _w[0];
     var setWarrantyPlus = _w[1];
 
-    var _ex = useState(false);
-    var expressDelivery = _ex[0];
-    var setExpressDelivery = _ex[1];
-
     var _cs = useState(false);
     var customSetup = _cs[0];
     var setCustomSetup = _cs[1];
-
-    var _pr = useState('MIREA10');
-    var promoInput = _pr[0];
-    var setPromoInput = _pr[1];
-
-    var _ap = useState('MIREA10');
-    var appliedPromo = _ap[0];
-    var setAppliedPromo = _ap[1];
 
     var _name = useState(profile.name || '');
     var name = _name[0];
@@ -514,39 +502,26 @@
     var calc = store.calculateOrder({
       productId: productId,
       quantity: quantity,
-      tariff: tariff,
+      deliveryMethod: deliveryMethod,
       warrantyPlus: warrantyPlus,
-      expressDelivery: expressDelivery,
-      customSetup: customSetup,
-      promoCode: appliedPromo
+      customSetup: customSetup
     });
 
     return h('div', { className: 'order-two-col' },
       h('div', { className: 'order-info-col' },
-        h('span', { className: 'eyebrow-tag' }, 'Интерактивный расчёт стоимости'),
+        h('span', { className: 'eyebrow-tag' }, 'Онлайн-оформление покупки'),
         h('h1', { className: 'page-h1' }, 'Оформление и калькулятор заказа'),
         h('p', { className: 'lead-paragraph' },
-          'Выберите устройство, сервисные опции и тариф. Итоговая сумма пересчитывается мгновенно, а оформленный заказ сразу появится в вашем Личном кабинете.'
-        ),
-        h('div', { className: 'highlight-callout' },
-          h('strong', null, 'Студенческая программа МИРЭА: '),
-          'применяйте промокоды ',
-          h('code', null, 'MIREA10'),
-          ' (-10%), ',
-          h('code', null, 'VOLT15'),
-          ' (-15%) или ',
-          h('code', null, 'SETUP3000'),
-          ' (-3 000 ₽).'
+          'Выберите устройство, способ получения и сервисные опции. Стоимость рассчитывается автоматически, а готовый заказ сразу сохранится в вашем Личном кабинете.'
         ),
         h('div', { className: 'surface-card order-contact-card' },
-          h('h2', { className: 'section-h3' }, 'Пункт самовывоза и сервис'),
-          h('p', null, 'г. Москва, проспект Вернадского, 78 (рядом с кампусом МИРЭА)'),
+          h('h2', { className: 'section-h3' }, 'Флагманский магазин и выдача заказов'),
+          h('p', null, 'г. Москва, проспект Вернадского, 78'),
           h('p', null, 'Телефон: +7 (495) 215-07-78 · Ежедневно 09:00–21:00'),
-          h('button', {
-            type: 'button',
+          h('a', {
             className: 'btn-volt btn-volt--outline btn-volt--sm',
-            onClick: function () { store.setChatOpen(true); }
-          }, 'Задать вопрос консультанту')
+            href: 'contacts.html'
+          }, 'Посмотреть схему проезда')
         )
       ),
 
@@ -646,16 +621,16 @@
         ),
 
         h('div', { className: 'order-form__field order-form__field--wide' },
-          h('label', { className: 'field-label', htmlFor: 'ordTariff' }, 'Тарифный план'),
+          h('label', { className: 'field-label', htmlFor: 'ordDelivery' }, 'Способ получения'),
           h('select', {
-            id: 'ordTariff',
+            id: 'ordDelivery',
             className: 'field-input order-form__select',
-            value: tariff,
-            onChange: function (e) { setTariff(e.target.value); }
+            value: deliveryMethod,
+            onChange: function (e) { setDeliveryMethod(e.target.value); }
           },
-            h('option', { value: 'regular' }, 'Стандартный розничный тариф'),
-            h('option', { value: 'student' }, 'Студенческий МИРЭА (-10%)'),
-            h('option', { value: 'team' }, 'Командная / кафедральная закупка (-12%)')
+            h('option', { value: 'pickup' }, 'Самовывоз из магазина на пр-те Вернадского, 78 (0 ₽)'),
+            h('option', { value: 'courier' }, 'Курьерская доставка по Москве (+490 ₽)'),
+            h('option', { value: 'express' }, 'Экспресс-доставка за 2 часа (+890 ₽)')
           )
         ),
 
@@ -668,15 +643,7 @@
                 checked: warrantyPlus,
                 onChange: function (e) { setWarrantyPlus(e.target.checked); }
               }),
-              h('span', null, 'Сервис «Замена без ожидания 2 года» (+1 490 ₽)')
-            ),
-            h('label', { className: 'check-tile' },
-              h('input', {
-                type: 'checkbox',
-                checked: expressDelivery,
-                onChange: function (e) { setExpressDelivery(e.target.checked); }
-              }),
-              h('span', null, 'Экспресс-доставка за 2 часа по Москве (+690 ₽)')
+              h('span', null, 'Сервис «Мгновенная замена 2 года» (+1 490 ₽)')
             ),
             h('label', { className: 'check-tile' },
               h('input', {
@@ -684,49 +651,25 @@
                 checked: customSetup,
                 onChange: function (e) { setCustomSetup(e.target.checked); }
               }),
-              h('span', null, 'Кастомная настройка и проверка битых пикселей (+990 ₽)')
+              h('span', null, 'Предпродажная настройка и тест матрицы (+990 ₽)')
             )
-          )
-        ),
-
-        h('div', { className: 'order-form__field order-form__field--wide' },
-          h('label', { className: 'field-label', htmlFor: 'ordPromo' }, 'Промокод'),
-          h('div', { className: 'promo-inline-row' },
-            h('input', {
-              id: 'ordPromo',
-              className: 'field-input order-form__input',
-              type: 'text',
-              value: promoInput,
-              onChange: function (e) { setPromoInput(e.target.value); },
-              placeholder: 'MIREA10, VOLT15 или SETUP3000'
-            }),
-            h('button', {
-              type: 'button',
-              className: 'btn-volt btn-volt--outline',
-              onClick: function () { setAppliedPromo(promoInput); }
-            }, 'Применить')
-          ),
-          h('small', { className: 'promo-hint', 'aria-live': 'polite' },
-            calc.promoApplied
-              ? 'Активен промокод: ' + calc.promoApplied.label
-              : 'Доступные коды: MIREA10, VOLT15, SETUP3000'
           )
         ),
 
         h('div', { className: 'order-form__field order-form__field--wide' },
           h('div', { className: 'calc-box', 'aria-live': 'polite' },
             h('div', { className: 'calc-box__row' },
-              h('span', null, 'Базовая стоимость устройств:'),
+              h('span', null, 'Стоимость устройств:'),
               h('strong', null, store.formatPrice(calc.base))
             ),
             h('div', { className: 'calc-box__row' },
-              h('span', null, 'Дополнительные опции:'),
+              h('span', null, 'Доставка и сервисные опции:'),
               h('strong', null, '+' + store.formatPrice(calc.addons))
             ),
-            h('div', { className: 'calc-box__row calc-box__row--discount' },
-              h('span', null, 'Выгода по тарифу и промокоду:'),
+            calc.discount > 0 ? h('div', { className: 'calc-box__row calc-box__row--discount' },
+              h('span', null, 'Скидка за комплект (от 3 шт.):'),
               h('strong', null, '−' + store.formatPrice(calc.discount))
-            ),
+            ) : null,
             h('div', { className: 'calc-box__total' },
               h('span', null, 'Итого к оплате:'),
               h('output', { className: 'calc-box__sum' }, store.formatPrice(calc.total))
@@ -735,14 +678,14 @@
         ),
 
         h('div', { className: 'order-form__field order-form__field--wide' },
-          h('label', { className: 'field-label', htmlFor: 'ordComment' }, 'Пожелания к заказу'),
+          h('label', { className: 'field-label', htmlFor: 'ordComment' }, 'Комментарий к заказу'),
           h('textarea', {
             id: 'ordComment',
             className: 'field-input order-form__textarea',
             rows: 3,
             value: comment,
             onChange: function (e) { setComment(e.target.value); },
-            placeholder: 'Например: русская гравировка клавиш или самовывоз после 16:00'
+            placeholder: 'Например: гравировка клавиш или удобное время получения'
           })
         ),
 
@@ -768,12 +711,12 @@
               type: 'button',
               className: 'inline-link-btn',
               onClick: function () { store.openCabinet('orders'); }
-            }, 'Посмотреть в кабинете')
+            }, 'Посмотреть мои заказы')
           )
         ) : null,
 
         h('div', { className: 'order-form__field order-form__field--wide order-form__actions' },
-          h('button', { type: 'submit', className: 'btn-volt btn-volt--primary' }, 'Оформить заказ')
+          h('button', { type: 'submit', className: 'btn-volt btn-volt--primary' }, 'Подтвердить заказ')
         )
       )
     );
@@ -796,7 +739,7 @@
       h('section', {
         className: 'surface-card reviews-carousel',
         'aria-roledescription': 'карусель',
-        'aria-label': 'Отзывы покупателей VoltMirea',
+        'aria-label': 'Отзывы покупателей GOLDAnaBAlKE',
         onKeyDown: function (e) {
           if (e.key === 'ArrowLeft') setSlide((slide - 1 + reviews.length) % reviews.length);
           if (e.key === 'ArrowRight') setSlide((slide + 1) % reviews.length);
@@ -805,7 +748,7 @@
         h('div', { className: 'section-header-split' },
           h('div', null,
             h('span', { className: 'eyebrow-tag' }, 'Проверенные покупки'),
-            h('h2', { className: 'section-h2' }, 'Отзывы студентов и разработчиков')
+            h('h2', { className: 'section-h2' }, 'Отзывы наших покупателей')
           ),
           h('span', { className: 'rating-chip' }, 'Средняя оценка 4,9 из 5')
         ),
@@ -885,24 +828,26 @@
 
     return h('div', { className: 'surface-card contacts-feedback-box' },
       h('div', null,
-        h('span', { className: 'eyebrow-tag' }, 'Прямая линия с экспертами'),
-        h('h2', { className: 'section-h2' }, 'Нужна помощь с подбором комплектующих?'),
+        h('span', { className: 'eyebrow-tag' }, 'Обратная связь'),
+        h('h2', { className: 'section-h2' }, 'Остались вопросы по наличию или характеристикам?'),
         h('p', { className: 'muted-note' },
-          'Напишите вопрос здесь — сообщение сразу передастся онлайн-консультанту в чат в левом нижнем углу экрана.'
+          'Оставьте свой вопрос или контакт — специалист магазина оперативно проверит товар на складе и свяжется с вами.'
         )
       ),
       h('form', {
         className: 'promo-inline-row',
         onSubmit: function (e) {
           e.preventDefault();
-          var msg = text.trim() || 'Здравствуйте! Подскажите наличие в шоуруме на пр-те Вернадского, 78.';
-          store.pushChatMessage('user', msg);
-          window.setTimeout(function () {
-            store.pushChatMessage('bot', store.buildConsultantReply(msg));
-          }, 400);
+          var msg = text.trim() || 'Здравствуйте! Подскажите наличие товара в магазине на пр-те Вернадского, 78.';
+          if (store.FEATURES.consultantChat) {
+            store.pushChatMessage('user', msg);
+            window.setTimeout(function () {
+              store.pushChatMessage('bot', store.buildConsultantReply(msg));
+            }, 400);
+            store.setChatOpen(true);
+          }
           setText('');
           setSent(true);
-          store.setChatOpen(true);
         }
       },
         h('label', { className: 'visually-hidden', htmlFor: 'contactQuickQuestion' }, 'Ваш вопрос'),
@@ -910,14 +855,15 @@
           id: 'contactQuickQuestion',
           className: 'field-input',
           type: 'text',
+          required: true,
           value: text,
           onChange: function (e) { setText(e.target.value); },
-          placeholder: 'Спросите про наличие, тест в шоуруме или скидку...'
+          placeholder: 'Напишите модель устройства или ваш вопрос...'
         }),
-        h('button', { type: 'submit', className: 'btn-volt btn-volt--primary' }, 'Написать в чат')
+        h('button', { type: 'submit', className: 'btn-volt btn-volt--primary' }, 'Отправить запрос')
       ),
       sent ? h('p', { className: 'status-banner status-banner--success', role: 'status' },
-        'Вопрос отправлен! Открыто окно консультанта слева внизу.'
+        'Спасибо! Ваше обращение принято — менеджер магазина ответит вам в ближайшее время.'
       ) : null
     );
   }
@@ -975,12 +921,6 @@
     document.querySelectorAll('[data-open-quick-order]').forEach(function (btn) {
       btn.addEventListener('click', function () {
         window.VoltStore.openQuickOrder(btn.getAttribute('data-open-quick-order') || 'keyboard');
-      });
-    });
-
-    document.querySelectorAll('[data-open-chat]').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        window.VoltStore.setChatOpen(true);
       });
     });
   }

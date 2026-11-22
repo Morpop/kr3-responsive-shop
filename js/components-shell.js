@@ -58,10 +58,9 @@
         h('path', { d: 'M12 7v5l3.5 2' })
       ),
       chat: h('path', { d: 'M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8A2.5 2.5 0 0 1 17.5 16H9l-4.5 4v-4H6.5A2.5 2.5 0 0 1 4 13.5v-8Z' }),
-      bolt: h('path', { d: 'M13.2 2.5 5.5 13.5h6l-1.2 8 8.2-11h-6l.7-8Z' }),
+      spark: h('path', { d: 'M12 2.5 14.7 9.3 21.5 12 14.7 14.7 12 21.5 9.3 14.7 2.5 12 9.3 9.3 12 2.5Z' }),
       close: h('path', { d: 'M6 6l12 12M18 6 6 18' }),
-      send: h('path', { d: 'm21 3-9.5 18-2.8-7.7L1 10.5 21 3Z' }),
-      tg: h('path', { d: 'm21.2 4.4-3.1 14.8c-.2 1-.8 1.3-1.7.8l-4.6-3.4-2.2 2.1c-.3.3-.5.5-1 .5l.3-4.7 8.5-7.7c.4-.3-.1-.5-.6-.2L6.3 13.2 1.8 11.8c-1-.3-1-1 .2-1.5L19.9 3c.8-.3 1.5.2 1.3 1.4Z' })
+      send: h('path', { d: 'm21 3-9.5 18-2.8-7.7L1 10.5 21 3Z' })
     };
 
     return h('svg', {
@@ -102,7 +101,7 @@
       { id: 'contacts', label: 'Контакты', href: 'contacts.html' }
     ];
 
-    var firstName = (profile.name || 'Кабинет').split(' ')[0];
+    var firstName = (profile.name || 'Кабинет').trim().split(' ')[0] || 'Кабинет';
 
     return h(React.Fragment, null,
       h('div', { className: 'topbar' },
@@ -110,18 +109,17 @@
           h('a', { className: 'brand-link', href: 'index.html' },
             h('img', {
               className: 'brand-link__logo',
-              src: 'images/volt-logo.svg',
-              alt: '',
+              src: 'images/dexter-logo.png',
+              alt: 'Логотип GOLDAnaBAlKE',
               width: 44,
-              height: 44,
-              'aria-hidden': 'true'
+              height: 44
             }),
             h('span', { className: 'brand-link__text' },
-              h('strong', { className: 'brand-link__name' }, 'VoltMirea'),
-              h('span', { className: 'brand-link__sub' }, 'Магазин умной техники и периферии')
+              h('strong', { className: 'brand-link__name' }, 'GOLDAnaBAlKE'),
+              h('span', { className: 'brand-link__sub' }, 'Магазин компьютерной техники и периферии')
             )
           ),
-          h('p', { className: 'topbar__info' }, 'Шоурум: пр-т Вернадского, 78 · Ежедневно 09:00–21:00')
+          h('p', { className: 'topbar__info' }, 'пр-т Вернадского, 78 · Ежедневно 09:00–21:00')
         )
       ),
       h('nav', { className: 'main-navbar', 'aria-label': 'Основная навигация' },
@@ -180,8 +178,7 @@
               onClick: function () { store.openCabinet('profile'); }
             },
               h(Icon, { name: 'user' }),
-              h('span', { className: 'cabinet-trigger-btn__label' }, firstName),
-              h('span', { className: 'cabinet-trigger-btn__bonus' }, profile.bonusPoints + ' Б')
+              h('span', { className: 'cabinet-trigger-btn__label' }, firstName)
             )
           )
         )
@@ -190,25 +187,24 @@
   }
 
   function SiteFooter() {
-    var store = useVoltStore();
     return h('div', { className: 'container' },
       h('div', { className: 'footer-three-col' },
         h('div', { className: 'footer-col footer-col--brand' },
           h('a', { className: 'footer-logo-row', href: 'index.html' },
             h('img', {
               className: 'footer-logo-row__graphic',
-              src: 'images/volt-logo.svg',
-              alt: 'Графический логотип VoltMirea',
+              src: 'images/dexter-logo.png',
+              alt: 'Логотип GOLDAnaBAlKE',
               width: 48,
               height: 48
             }),
-            h('span', { className: 'footer-logo-row__wordmark' }, 'VoltMirea')
+            h('span', { className: 'footer-logo-row__wordmark' }, 'GOLDAnaBAlKE')
           ),
           h('p', { className: 'footer-slogan' },
-            'Умная техника и периферия для продуктивной учёбы, чистой разработки и ярких побед.'
+            'Надёжная компьютерная техника и периферия для продуктивной работы, творчества и ярких побед.'
           ),
           h('p', { className: 'footer-copyright' },
-            '© 2026 Все права защищены · Явдощук Дмитрий (ЭФБО-11-25)'
+            '© 2026 Все права защищены'
           )
         ),
 
@@ -236,7 +232,7 @@
             h('li', null,
               h('a', { className: 'footer-nav-link', href: 'order.html' },
                 h(Icon, { name: 'bag', className: 'footer-icon' }),
-                h('span', null, 'Калькулятор заказа')
+                h('span', null, 'Оформление заказа')
               )
             )
           )
@@ -251,44 +247,49 @@
                 h('a', { href: 'tel:+74952150778' }, '+7 (495) 215-07-78')
               ),
               h('li', null,
+                h(Icon, { name: 'clock', className: 'footer-icon' }),
+                h('span', null, 'Ежедневно с 09:00 до 21:00')
+              ),
+              h('li', null,
                 h(Icon, { name: 'mail', className: 'footer-icon' }),
-                h('a', { href: 'mailto:hello@voltmirea.ru' }, 'hello@voltmirea.ru')
+                h('a', { href: 'mailto:hello@goldanabalke.ru' }, 'hello@goldanabalke.ru')
               ),
               h('li', null,
                 h(Icon, { name: 'pin', className: 'footer-icon' }),
                 h('span', null, 'г. Москва, пр-т Вернадского, 78')
-              ),
-              h('li', null,
-                h(Icon, { name: 'clock', className: 'footer-icon' }),
-                h('span', null, 'Ежедневно с 09:00 до 21:00')
               )
             )
           ),
           h('div', { className: 'footer-social-row', 'aria-label': 'Быстрые каналы связи' },
             h('a', {
               className: 'social-pill',
-              href: 'contacts.html',
-              'aria-label': 'Перейти на страницу контактов и карты'
-            }, h(Icon, { name: 'pin' })),
+              href: 'tel:+74952150778',
+              'aria-label': 'Позвонить в магазин'
+            }, h(Icon, { name: 'phone' })),
             h('a', {
               className: 'social-pill',
-              href: 'mailto:hello@voltmirea.ru',
+              href: 'mailto:hello@goldanabalke.ru',
               'aria-label': 'Написать на электронную почту'
             }, h(Icon, { name: 'mail' })),
-            h('button', {
-              type: 'button',
+            h('a', {
               className: 'social-pill',
-              onClick: function () { store.setChatOpen(true); },
-              'aria-label': 'Открыть онлайн-чат с консультантом'
-            }, h(Icon, { name: 'tg' }))
+              href: 'contacts.html',
+              'aria-label': 'Перейти на страницу контактов и карты'
+            }, h(Icon, { name: 'pin' }))
           )
         )
       )
     );
   }
 
+  /*
+    Виджет чата с консультантом сохранён полностью готовым:
+    отображается автоматически при включении FEATURES.consultantChat = true в js/logic.js
+  */
   function ChatWidget() {
     var store = useVoltStore();
+    if (!store.FEATURES.consultantChat) return null;
+
     var ui = store.getUIState();
     var isOpen = ui.chatOpen;
     var messages = store.getChatMessages();
@@ -323,7 +324,6 @@
     }
 
     var quickChips = [
-      'Промокод МИРЭА',
       'Подобрать клавиатуру',
       'Самовывоз и доставка',
       'Гарантия 2 года'
@@ -333,13 +333,13 @@
       isOpen ? h('section', {
         className: 'chat-panel',
         role: 'dialog',
-        'aria-label': 'Чат с консультантом VoltMirea'
+        'aria-label': 'Чат с консультантом GOLDAnaBAlKE'
       },
         h('header', { className: 'chat-panel__head' },
           h('div', { className: 'chat-panel__agent' },
             h('span', { className: 'chat-panel__avatar', 'aria-hidden': 'true' }, 'АК'),
             h('div', null,
-              h('strong', { className: 'chat-panel__name' }, 'Алексей · эксперт VoltMirea'),
+              h('strong', { className: 'chat-panel__name' }, 'Алексей · эксперт GOLDAnaBAlKE'),
               h('span', { className: 'chat-panel__status' }, 'Онлайн · отвечает за минуту')
             )
           ),
@@ -460,7 +460,7 @@
             strokeDashoffset: String(dashOffset)
           })
         ),
-        h(Icon, { name: 'bolt', filled: true, className: 'volt-top-capsule__bolt' })
+        h(Icon, { name: 'spark', filled: true, className: 'volt-top-capsule__bolt' })
       ),
       h('span', { className: 'volt-top-capsule__meta' },
         h('strong', { className: 'volt-top-capsule__title' }, 'Наверх'),
@@ -516,10 +516,7 @@
         'aria-labelledby': 'cabinetModalTitle'
       },
         h('div', { className: 'modal-card__header' },
-          h('div', null,
-            h('span', { className: 'eyebrow-tag' }, 'Клубная система VoltMirea'),
-            h('h2', { id: 'cabinetModalTitle', className: 'modal-card__title' }, 'Личный кабинет покупателя')
-          ),
+          h('h2', { id: 'cabinetModalTitle', className: 'modal-card__title' }, 'Личный кабинет покупателя'),
           h('button', {
             type: 'button',
             className: 'icon-close-btn',
@@ -530,7 +527,7 @@
 
         h('div', { className: 'cabinet-tabs', role: 'tablist' },
           [
-            { id: 'profile', label: 'Профиль и бонусы' },
+            { id: 'profile', label: 'Профиль' },
             { id: 'favorites', label: 'Избранное (' + favProducts.length + ')' },
             { id: 'orders', label: 'Мои заказы (' + orders.length + ')' }
           ].map(function (tab) {
@@ -547,21 +544,13 @@
         ),
 
         ui.cabinetTab === 'profile' ? h('div', { className: 'cabinet-section' },
-          h('div', { className: 'loyalty-banner' },
-            h('div', null,
-              h('p', { className: 'loyalty-banner__label' }, 'Студенческая карта МИРЭА · активна'),
-              h('p', { className: 'loyalty-banner__points' }, profile.bonusPoints + ' бонусов'),
-              h('p', { className: 'loyalty-banner__hint' }, '1 бонус = 1 ₽ · постоянная скидка 10% по коду MIREA10')
-            ),
-            h('a', { className: 'btn-volt btn-volt--light', href: 'order.html' }, 'Использовать в заказе')
-          ),
           h('form', {
             className: 'cabinet-form',
             onSubmit: function (e) {
               e.preventDefault();
               store.saveProfile({
                 name: form.name,
-                group: form.group,
+                city: form.city,
                 email: form.email,
                 phone: form.phone
               });
@@ -581,13 +570,13 @@
                 })
               ),
               h('div', { className: 'field-box' },
-                h('label', { className: 'field-label', htmlFor: 'cabGroup' }, 'Учебная группа / статус'),
+                h('label', { className: 'field-label', htmlFor: 'cabCity' }, 'Город и адрес доставки'),
                 h('input', {
-                  id: 'cabGroup',
+                  id: 'cabCity',
                   className: 'field-input',
                   type: 'text',
-                  value: form.group || '',
-                  onChange: function (e) { setForm(Object.assign({}, form, { group: e.target.value })); }
+                  value: form.city || '',
+                  onChange: function (e) { setForm(Object.assign({}, form, { city: e.target.value })); }
                 })
               ),
               h('div', { className: 'field-box' },
@@ -614,7 +603,7 @@
               )
             ),
             savedMsg ? h('p', { className: 'status-banner status-banner--success', role: 'status' },
-              'Данные профиля успешно сохранены в браузере!'
+              'Контактные данные профиля успешно сохранены!'
             ) : null,
             h('div', { className: 'modal-actions-row' },
               h('button', { type: 'submit', className: 'btn-volt btn-volt--primary' }, 'Сохранить изменения')
@@ -624,7 +613,7 @@
 
         ui.cabinetTab === 'favorites' ? h('div', { className: 'cabinet-section' },
           favProducts.length === 0 ? h('div', { className: 'empty-state-box' },
-            h('p', null, 'В избранном пока пусто. Нажимайте на сердечко у понравившихся девайсов в каталоге!'),
+            h('p', null, 'В избранном пока пусто. Нажимайте на сердечко у понравившихся товаров в каталоге!'),
             h('a', { className: 'btn-volt btn-volt--primary', href: 'catalog.html' }, 'Перейти в каталог')
           ) : h('div', { className: 'cabinet-list' },
             favProducts.map(function (item) {
@@ -680,7 +669,6 @@
   function QuickOrderModal() {
     var store = useVoltStore();
     var product = store.getUIState().quickOrderProduct;
-    var profile = store.getProfile();
 
     var _n = useState('');
     var name = _n[0];
@@ -737,7 +725,7 @@
 
         createdOrder ? h('div', { className: 'cabinet-section' },
           h('div', { className: 'status-banner status-banner--success', role: 'status' },
-            'Заказ ' + createdOrder.id + ' оформлен! Девайс забронирован, а заказ добавлен в ваш Личный кабинет.'
+            'Заказ ' + createdOrder.id + ' оформлен! Устройство зарезервировано и добавлено в ваш Личный кабинет.'
           ),
           h('div', { className: 'modal-actions-row' },
             h('button', {
@@ -752,7 +740,7 @@
               type: 'button',
               className: 'btn-volt btn-volt--primary',
               onClick: function () { store.closeQuickOrder(); }
-            }, 'Отлично')
+            }, 'Готово')
           )
         ) : h('form', {
           className: 'cabinet-form',
@@ -776,7 +764,7 @@
             }),
             h('div', null,
               h('strong', null, product.name),
-              h('p', null, store.formatPrice(product.price) + ' · самовывоз сегодня')
+              h('p', null, store.formatPrice(product.price) + ' · самовывоз из магазина сегодня')
             )
           ),
           h('div', { className: 'field-box' },
@@ -806,8 +794,8 @@
             h('a', {
               className: 'btn-volt btn-volt--outline',
               href: 'order.html?product=' + product.id
-            }, 'Калькулятор со скидками'),
-            h('button', { type: 'submit', className: 'btn-volt btn-volt--primary' }, 'Подтвердить бронь')
+            }, 'Перейти к полному заказу'),
+            h('button', { type: 'submit', className: 'btn-volt btn-volt--primary' }, 'Подтвердить резерв')
           )
         )
       )

@@ -216,9 +216,10 @@ html[data-theme="dark"] .eyebrow-tag {
 }
 
 .topbar {
-  background: linear-gradient(90deg, #ffb84d 0%, #ff7d54 100%);
-  color: #161332;
+  background: linear-gradient(90deg, #1b163e 0%, #27205c 50%, #191439 100%);
+  color: #f4f3ff;
   padding-block: 10px;
+  border-bottom: 1px solid rgba(160, 148, 255, 0.18);
 }
 
 .topbar__inner {
@@ -232,13 +233,14 @@ html[data-theme="dark"] .eyebrow-tag {
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  color: #161332 !important;
+  color: #ffffff !important;
 }
 
 .brand-link__logo {
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   border-radius: 12px;
+  object-fit: cover;
   flex-shrink: 0;
 }
 
@@ -251,19 +253,20 @@ html[data-theme="dark"] .eyebrow-tag {
 .brand-link__name {
   font-size: 1.38rem;
   font-weight: 800;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
 }
 
 .brand-link__sub {
   font-size: 0.8rem;
-  font-weight: 700;
-  opacity: 0.85;
+  font-weight: 600;
+  color: #c4bcff;
 }
 
 .topbar__info {
   margin: 0;
   font-size: 0.86rem;
-  font-weight: 700;
+  font-weight: 600;
+  color: rgba(244, 243, 255, 0.85);
 }
 
 .main-navbar {
@@ -1530,9 +1533,10 @@ textarea.field-input {
 }
 
 .footer-logo-row__graphic {
-  width: 46px;
-  height: 46px;
+  width: 48px;
+  height: 48px;
   border-radius: 13px;
+  object-fit: cover;
   flex-shrink: 0;
 }
 
@@ -1811,10 +1815,10 @@ textarea.field-input {
   align-items: center;
   gap: 9px;
   min-height: 48px;
-  padding: 6px 14px 6px 8px;
+  padding: 6px 15px 6px 8px;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.24);
-  background: linear-gradient(135deg, #211b4e 0%, #ff6242 140%);
+  border: 1px solid rgba(255, 211, 122, 0.35);
+  background: linear-gradient(135deg, #1b1640 0%, #3d308c 100%);
   color: #ffffff;
   box-shadow: 0 14px 32px rgba(22, 19, 50, 0.34);
   opacity: 0;
